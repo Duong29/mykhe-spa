@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { formatUsd, formatVnd, fromPrice } from '../data/services'
 import { IconArrow, IconClock } from './Icons'
+import Img from './Img'
 
 /** clamp: cắt mô tả còn 3 dòng (dùng ở trang chủ). Trang dịch vụ hiện đầy đủ. */
 export default function ServiceCard({ service, clamp = true }) {
@@ -12,10 +13,10 @@ export default function ServiceCard({ service, clamp = true }) {
   return (
     <article className="card group flex h-full flex-col">
       <div className="relative aspect-4/3 overflow-hidden">
-        <img
+        <Img
           src={service.image}
           alt={t(`services_list.${service.id}.name`)}
-          loading="lazy"
+          sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 92vw"
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/45 to-transparent" />

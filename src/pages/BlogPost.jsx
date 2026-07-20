@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { posts } from './Blog'
 import Reveal from '../components/Reveal'
 import { IconArrow } from '../components/Icons'
+import Img from '../components/Img'
 
 export default function BlogPost() {
   const { id } = useParams()
@@ -17,7 +18,12 @@ export default function BlogPost() {
   return (
     <>
       <section className="relative overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-20">
-        <img src={post.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <Img
+          src={post.image}
+          priority
+          sizes="100vw"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
         <div className="absolute inset-0 bg-ink-900/72" />
         <div className="container-page relative max-w-3xl text-center">
           <div className="flex items-center justify-center gap-3 text-xs">
@@ -68,10 +74,9 @@ export default function BlogPost() {
               <Reveal key={p.id} delay={i * 80}>
                 <Link to={`/tin-tuc/${p.id}`} className="card group flex h-full flex-col">
                   <div className="aspect-16/10 overflow-hidden">
-                    <img
+                    <Img
                       src={p.image}
-                      alt=""
-                      loading="lazy"
+                      sizes="(min-width: 640px) 360px, 92vw"
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>

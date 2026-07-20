@@ -1,0 +1,110 @@
+{
+  "art-wall": {
+    "w": 1448,
+    "h": 1086
+  },
+  "bathroom": {
+    "w": 1448,
+    "h": 1086
+  },
+  "decor-corner": {
+    "w": 1448,
+    "h": 1086
+  },
+  "decor-frame": {
+    "w": 1448,
+    "h": 1086
+  },
+  "decor-shelf": {
+    "w": 1448,
+    "h": 1086
+  },
+  "entrance-arch": {
+    "w": 1448,
+    "h": 1086
+  },
+  "facade": {
+    "w": 1086,
+    "h": 1448
+  },
+  "google-review-desk": {
+    "w": 1448,
+    "h": 1086
+  },
+  "hotstone": {
+    "w": 1448,
+    "h": 1086
+  },
+  "logo": {
+    "w": 795,
+    "h": 1001
+  },
+  "lounge-1": {
+    "w": 1448,
+    "h": 1086
+  },
+  "lounge-2": {
+    "w": 1448,
+    "h": 1086
+  },
+  "lounge-evening": {
+    "w": 1448,
+    "h": 1086
+  },
+  "massage-service": {
+    "w": 1448,
+    "h": 1086
+  },
+  "menu-board": {
+    "w": 1448,
+    "h": 1086
+  },
+  "menu-full": {
+    "w": 1600,
+    "h": 1136
+  },
+  "reception": {
+    "w": 1448,
+    "h": 1086
+  },
+  "room-couple": {
+    "w": 1448,
+    "h": 1086
+  },
+  "room-group": {
+    "w": 1448,
+    "h": 1086
+  },
+  "room-shelf-1": {
+    "w": 1448,
+    "h": 1086
+  },
+  "room-shelf-2": {
+    "w": 1448,
+    "h": 1086
+  },
+  "room-shelf-dark": {
+    "w": 1448,
+    "h": 1086
+  },
+  "room-twin": {
+    "w": 1448,
+    "h": 1086
+  },
+  "shampoo-cart": {
+    "w": 1448,
+    "h": 1086
+  },
+  "shampoo-room": {
+    "w": 1448,
+    "h": 1086
+  },
+  "shampoo-service": {
+    "w": 1448,
+    "h": 1086
+  },
+  "welcome-drink": {
+    "w": 1448,
+    "h": 1086
+  }
+}

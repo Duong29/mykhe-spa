@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { site } from '../data/site'
 import LanguageSwitcher from './LanguageSwitcher'
 import { IconMenu, IconClose, IconPhone } from './Icons'
+import Img from './Img'
 
 const links = [
   { to: '/', key: 'home' },
@@ -60,9 +61,11 @@ export default function Header() {
       >
         <div className="container-page flex items-center gap-3">
           <Link to="/" className="flex shrink-0 items-center gap-2.5">
-            <img
+            <Img
               src={site.logo}
               alt={site.brand}
+              priority
+              sizes="44px"
               className="h-11 w-11 rounded-full object-cover ring-1 ring-white/30"
             />
             <span className="hidden leading-tight sm:block">
@@ -149,7 +152,7 @@ export default function Header() {
         >
           <div className="container-page flex shrink-0 items-center justify-between py-5">
             <div className="flex items-center gap-2.5">
-              <img src={site.logo} alt="" className="h-10 w-10 rounded-full object-cover" />
+              <Img src={site.logo} sizes="40px" className="h-10 w-10 rounded-full object-cover" />
               <span className="font-display text-lg font-semibold">My Khe Spa</span>
             </div>
             <button

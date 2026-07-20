@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { site } from '../data/site'
 import { IconPin, IconPhone, IconMail, IconClock, IconZalo, IconMessenger, IconKakao, IconInstagram } from './Icons'
+import Img from './Img'
 
 const links = [
   { to: '/', key: 'home' },
@@ -27,7 +28,7 @@ export default function Footer() {
       <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:py-16">
         <div className="lg:pr-6">
           <div className="flex items-center gap-3">
-            <img src={site.logo} alt="" className="h-12 w-12 rounded-full object-cover" />
+            <Img src={site.logo} sizes="48px" className="h-12 w-12 rounded-full object-cover" />
             <div className="leading-tight">
               <p className="font-display text-xl font-semibold text-white">My Khe Spa</p>
               <p className="text-[10px] tracking-[0.22em] text-clay-400">DA NANG</p>

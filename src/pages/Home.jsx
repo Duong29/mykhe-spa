@@ -7,6 +7,7 @@ import SectionHeading from '../components/SectionHeading'
 import ServiceCard from '../components/ServiceCard'
 import GoogleReview from '../components/GoogleReview'
 import Reveal from '../components/Reveal'
+import Img from '../components/Img'
 import {
   IconArrow,
   IconHands,
@@ -43,9 +44,10 @@ export default function Home() {
     <>
       {/* ---------------- HERO ---------------- */}
       <section className="relative flex min-h-[92svh] items-center overflow-hidden">
-        <img
+        <Img
           src="/images/lounge-evening.jpg"
-          alt=""
+          priority
+          sizes="100vw"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-ink-900/80 via-ink-900/55 to-clay-900/40" />
@@ -111,18 +113,16 @@ export default function Home() {
         <div className="container-page grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal className="relative">
             <div className="overflow-hidden rounded-3xl">
-              <img
+              <Img
                 src="/images/lounge-1.png"
-                alt=""
-                loading="lazy"
+                sizes="(min-width: 1024px) 520px, 92vw"
                 className="aspect-4/3 w-full object-cover"
               />
             </div>
             <div className="absolute -right-2 -bottom-10 hidden w-48 overflow-hidden rounded-2xl ring-8 ring-cream sm:block lg:-right-8 lg:w-60">
-              <img
+              <Img
                 src="/images/massage-service.png"
-                alt=""
-                loading="lazy"
+                sizes="240px"
                 className="aspect-square w-full object-cover"
               />
             </div>
@@ -206,10 +206,9 @@ export default function Home() {
                 delay={i * 70}
                 className={`overflow-hidden rounded-2xl ${shot.span}`}
               >
-                <img
+                <Img
                   src={shot.src}
-                  alt=""
-                  loading="lazy"
+                  sizes="(min-width: 640px) 25vw, 50vw"
                   className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 />
               </Reveal>
@@ -267,10 +266,9 @@ export default function Home() {
 
       {/* ---------------- CTA ---------------- */}
       <section className="relative overflow-hidden py-24 lg:py-32">
-        <img
+        <Img
           src="/images/entrance-arch.png"
-          alt=""
-          loading="lazy"
+          sizes="100vw"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-ink-900/72" />

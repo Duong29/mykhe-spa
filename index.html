@@ -2,7 +2,8 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Da Nang My Khe Spa — Massage &amp; Chăm sóc sức khoẻ tại Đà Nẵng</title>
     <meta
@@ -12,13 +13,23 @@
     <meta name="theme-color" content="#E2611F" />
     <meta property="og:title" content="Da Nang My Khe Spa" />
     <meta property="og:description" content="Không gian thư giãn chuẩn Hàn ngay sát biển Mỹ Khê, Đà Nẵng." />
-    <meta property="og:image" content="/images/facade.jpg" />
+    <meta property="og:image" content="/images/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
+    />
+    <!-- Ảnh hero trang chủ quyết định điểm LCP nên tải sớm nhất có thể -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/lounge-evening-1440.webp"
+      imagesrcset="/images/lounge-evening-480.webp 480w, /images/lounge-evening-800.webp 800w, /images/lounge-evening-1440.webp 1440w"
+      imagesizes="100vw"
+      fetchpriority="high"
     />
   </head>
   <body>

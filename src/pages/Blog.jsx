@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
 import { IconArrow } from '../components/Icons'
+import Img from '../components/Img'
 
 export const posts = [
   { id: 'p1', image: '/images/welcome-drink.png' },
@@ -29,9 +30,10 @@ export default function Blog() {
               className="group grid overflow-hidden rounded-3xl bg-white ring-1 ring-ink-900/5 transition hover:shadow-xl lg:grid-cols-2"
             >
               <div className="aspect-16/10 overflow-hidden lg:aspect-auto">
-                <img
+                <Img
                   src={lead.image}
-                  alt=""
+                  priority
+                  sizes="(min-width: 1024px) 560px, 100vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
@@ -61,10 +63,9 @@ export default function Blog() {
               <Reveal key={p.id} delay={i * 90}>
                 <Link to={`/tin-tuc/${p.id}`} className="card group flex h-full flex-col">
                   <div className="aspect-16/10 overflow-hidden">
-                    <img
+                    <Img
                       src={p.image}
-                      alt=""
-                      loading="lazy"
+                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 92vw"
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>

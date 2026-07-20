@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { site } from '../data/site'
 import { services, findService, formatVnd, formatUsd } from '../data/services'
 import PageHeader from '../components/PageHeader'
+import Img from '../components/Img'
 import {
   IconCheck,
   IconArrow,
@@ -253,10 +254,9 @@ export default function Booking() {
                             : 'ring-1 ring-ink-900/10 hover:ring-clay-300'
                         }`}
                       >
-                        <img
+                        <Img
                           src={s.image}
-                          alt=""
-                          loading="lazy"
+                          sizes="64px"
                           className="h-16 w-16 shrink-0 rounded-xl object-cover"
                         />
                         <span className="min-w-0 flex-1">
@@ -447,11 +447,13 @@ export default function Booking() {
                 </h2>
 
                 <div className="mt-6 flex gap-4 rounded-2xl bg-cream p-4">
-                  <img
-                    src={service?.image}
-                    alt=""
-                    className="h-24 w-24 shrink-0 rounded-xl object-cover"
-                  />
+                  {service && (
+                    <Img
+                      src={service.image}
+                      sizes="96px"
+                      className="h-24 w-24 shrink-0 rounded-xl object-cover"
+                    />
+                  )}
                   <div className="min-w-0">
                     <p className="font-display text-lg font-semibold text-ink-800">
                       {service && t(`services_list.${service.id}.name`)}

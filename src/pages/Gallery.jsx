@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
+import FilterTabs from '../components/FilterTabs'
+import Img from '../components/Img'
 import { IconClose, IconArrow } from '../components/Icons'
 
 // group: space (không gian chung) | room (phòng trị liệu) | service (dịch vụ)
@@ -72,25 +74,14 @@ export default function Gallery() {
 
       <section className="py-16 lg:py-20">
         <div className="container-page">
-          <div className="flex flex-wrap justify-center gap-2">
-            {filters.map((f) => (
-              <button
-                key={f.key}
-                type="button"
-                onClick={() => {
-                  setFilter(f.key)
-                  setLightbox(null)
-                }}
-                className={`rounded-full px-5 py-2.5 text-sm font-medium transition ${
-                  filter === f.key
-                    ? 'bg-clay-500 text-white shadow-md shadow-clay-500/25'
-                    : 'bg-white text-ink-700 ring-1 ring-ink-900/10 hover:text-clay-600'
-                }`}
-              >
-                {t(f.labelKey)}
-              </button>
-            ))}
-          </div>
+          <FilterTabs
+            items={filters.map((f) => ({ key: f.key, label: t(f.labelKey) }))}
+            value={filter}
+            onChange={(key) => {
+              setFilter(key)
+              setLightbox(null)
+            }}
+          />
 
           {/* Lưới masonry nhẹ bằng CSS columns — ảnh giữ đúng tỉ lệ gốc */}
           <div className="mt-12 columns-2 gap-3 sm:gap-4 lg:columns-3">
@@ -101,10 +92,10 @@ export default function Gallery() {
                   onClick={() => setLightbox(i)}
                   className="group block w-full overflow-hidden rounded-2xl"
                 >
-                  <img
+                  <Img
                     src={p.src}
                     alt={t(`gallery.filter${p.group.charAt(0).toUpperCase() + p.group.slice(1)}`)}
-                    loading="lazy"
+                    sizes="(min-width: 1024px) 360px, 46vw"
                     className="w-full transition-transform duration-700 group-hover:scale-105"
                   />
                 </button>
@@ -143,11 +134,12 @@ export default function Gallery() {
             <IconArrow size={22} />
           </button>
 
-          <img
+          <Img
             src={visible[lightbox].src}
-            alt=""
+            priority
+            sizes="90vw"
             onClick={(e) => e.stopPropagation()}
-            className="max-h-[85vh] max-w-full rounded-xl object-contain"
+            className="max-h-[85vh] w-auto max-w-full rounded-xl object-contain"
           />
 
           <button
