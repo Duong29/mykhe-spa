@@ -1,0 +1,48 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+.vite
+
+# Biến môi trường & khoá bí mật — tuyệt đối không commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json
+
+# Log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.idea
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Cấu hình công cụ cá nhân
+.claude/
+
+# Tài liệu nội bộ của khách hàng — giữ trên máy, không đưa lên repo
+Yeu-cau-thiet-ke-Website-Spa.pdf
+*.ai.pdf
+
+# Khác
+*.local
+coverage

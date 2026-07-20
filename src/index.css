@@ -1,0 +1,109 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Bảng màu lấy từ không gian thật của spa: tường cam đất, nội thất đen, khăn kem */
+  --color-clay-50: #fdf5ef;
+  --color-clay-100: #fae7d8;
+  --color-clay-200: #f4cbaa;
+  --color-clay-300: #eda877;
+  --color-clay-400: #e8823f;
+  --color-clay-500: #e2611f;
+  --color-clay-600: #c94d15;
+  --color-clay-700: #a33c13;
+  --color-clay-800: #7d2f11;
+  --color-clay-900: #5c240f;
+
+  --color-ink-50: #f7f6f4;
+  --color-ink-100: #e9e6e1;
+  --color-ink-300: #a9a29a;
+  --color-ink-500: #57504a;
+  --color-ink-700: #2b2724;
+  --color-ink-800: #1f1c19;
+  --color-ink-900: #151311;
+
+  --color-cream: #f6efe6;
+  --color-gold: #c9a227;
+  --color-teal: #14615f;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink-800);
+    background: var(--color-cream);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
+  }
+  /* Tailwind v4 không cho @apply một class do mình tự định nghĩa,
+     nên mỗi biến thể nút liệt kê đầy đủ utility. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold
+      transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-clay-500 px-6 py-3 text-sm
+      font-semibold text-white shadow-lg shadow-clay-500/25 transition-all duration-200
+      hover:bg-clay-600 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink-800/20 px-6
+      py-3 text-sm font-semibold text-ink-800 transition-all duration-200 hover:border-clay-500
+      hover:text-clay-600 active:scale-[0.98];
+  }
+  .btn-ghost-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6
+      py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200
+      hover:bg-white/10 active:scale-[0.98];
+  }
+  .card {
+    @apply overflow-hidden rounded-2xl bg-white ring-1 ring-ink-900/5 transition-shadow duration-300 hover:shadow-xl;
+  }
+  .field {
+    @apply w-full rounded-xl border border-ink-900/15 bg-white px-4 py-3 text-sm outline-none
+      transition focus:border-clay-500 focus:ring-2 focus:ring-clay-500/20;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink-700;
+  }
+}
+
+/* Hiệu ứng xuất hiện khi cuộn — tinh tế, đúng tinh thần tối giản */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
