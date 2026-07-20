@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { services, tipGuide, formatVnd, formatUsd } from '../data/services'
 import PageHeader from '../components/PageHeader'
 import ServiceCard from '../components/ServiceCard'
+import FilterTabs from '../components/FilterTabs'
 import Reveal from '../components/Reveal'
 import { IconArrow } from '../components/Icons'
 
@@ -35,22 +36,11 @@ export default function Services() {
       <section className="py-16 lg:py-20">
         <div className="container-page">
           {/* Bộ lọc theo nhóm dịch vụ */}
-          <div className="flex flex-wrap justify-center gap-2">
-            {filters.map((f) => (
-              <button
-                key={f.key}
-                type="button"
-                onClick={() => setFilter(f.key)}
-                className={`rounded-full px-5 py-2.5 text-sm font-medium transition ${
-                  filter === f.key
-                    ? 'bg-clay-500 text-white shadow-md shadow-clay-500/25'
-                    : 'bg-white text-ink-700 ring-1 ring-ink-900/10 hover:text-clay-600'
-                }`}
-              >
-                {t(f.labelKey)}
-              </button>
-            ))}
-          </div>
+          <FilterTabs
+            items={filters.map((f) => ({ key: f.key, label: t(f.labelKey) }))}
+            value={filter}
+            onChange={setFilter}
+          />
 
           <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
             {visible.map((s, i) => (
