@@ -74,6 +74,8 @@ export const services = [
     id: 'kids',
     category: 'massage',
     image: '/images/room-twin.png',
+    // Điều kiện dùng gói trẻ em — hiển thị kèm mọi nơi có dịch vụ này
+    maxHeightCm: 140,
     prices: [
       { min: 60, vnd: 270000, usd: 10 },
       { min: 90, vnd: 400000, usd: 15 },
@@ -147,13 +149,31 @@ export const services = [
 ]
 
 // Bảng tip tham khảo in trên menu tại quầy
+/**
+ * Bảng tip in trên menu tại quầy. Để dạng dữ liệu (không phải chuỗi có sẵn)
+ * để vừa dựng được bảng tham khảo, vừa tra ra đúng mức tip cho một đơn cụ thể.
+ * dry = mức riêng cho massage khô và massage bốn tay.
+ */
 export const tipGuide = [
-  { label: '60′', vnd: 50000, usd: 2 },
-  { label: '90′', vnd: 80000, usd: 3 },
-  { label: '120′', vnd: 130000, usd: 5 },
-  { label: 'Dry / Four hands 60′', vnd: 110000, usd: 4 },
-  { label: 'Dry / Four hands 90′', vnd: 160000, usd: 6 },
+  { min: 60, vnd: 50000, usd: 2 },
+  { min: 90, vnd: 80000, usd: 3 },
+  { min: 120, vnd: 130000, usd: 5 },
+  { min: 60, vnd: 110000, usd: 4, dry: true },
+  { min: 90, vnd: 160000, usd: 6, dry: true },
 ]
+
+const DRY_TIP_SERVICES = new Set(['dry', 'fourHands'])
+
+/** Mức tip cho một lựa chọn cụ thể. Trả null nếu gói đã bao gồm tip. */
+export const tipFor = (service, minutes) => {
+  if (!service || isTipIncluded(minutes)) return null
+  const dry = DRY_TIP_SERVICES.has(service.id)
+  return (
+    tipGuide.find((r) => r.min === minutes && Boolean(r.dry) === dry) ||
+    tipGuide.find((r) => r.min === minutes && !r.dry) ||
+    null
+  )
+}
 
 export const featuredServices = services.filter((s) => s.featured)
 
@@ -190,3 +210,28 @@ export const discountUsd = (usd, service, minutes) =>
   usd == null || !isDiscountable(service, minutes)
     ? usd
     : Math.round(usd * (1 - ONLINE_DISCOUNT))
+
+/** Gói 30 phút đã bao gồm tiền tip, khách không phải đưa thêm */
+export const isTipIncluded = (minutes) => minutes === 30
+
+/**
+ * Tổng tiền của một đơn đặt lịch.
+ * Khách trong cùng một đơn luôn đồng nhất: gói trẻ em thì toàn trẻ em,
+ * các gói còn lại thì toàn người lớn — nên chỉ cần một mức giảm cho cả đơn.
+ */
+export const bookingTotals = (priceRow, service, minutes, guests) => {
+  if (!priceRow?.vnd || guests < 1) {
+    return { before: null, beforeUsd: null, after: null, afterUsd: null, discounted: false }
+  }
+
+  const before = priceRow.vnd * guests
+  const beforeUsd = priceRow.usd == null ? null : priceRow.usd * guests
+
+  return {
+    before,
+    beforeUsd,
+    after: discountVnd(before, service, minutes),
+    afterUsd: discountUsd(beforeUsd, service, minutes),
+    discounted: isDiscountable(service, minutes),
+  }
+}

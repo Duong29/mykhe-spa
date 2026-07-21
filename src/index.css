@@ -53,10 +53,6 @@
   }
   /* Tailwind v4 không cho @apply một class do mình tự định nghĩa,
      nên mỗi biến thể nút liệt kê đầy đủ utility. */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold
-      transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
-  }
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-clay-500 px-6 py-3 text-sm
       font-semibold text-white shadow-lg shadow-clay-500/25 transition-all duration-200
@@ -73,7 +69,9 @@
       hover:bg-white/10 active:scale-[0.98];
   }
   .card {
-    @apply overflow-hidden rounded-2xl bg-white ring-1 ring-ink-900/5 transition-shadow duration-300 hover:shadow-xl;
+    @apply relative overflow-hidden rounded-3xl bg-white ring-1 ring-ink-900/8
+      transition-all duration-300 hover:ring-clay-500/30
+      hover:shadow-[0_20px_45px_-25px_rgba(21,19,17,0.45)];
   }
   .field {
     @apply w-full rounded-xl border border-ink-900/15 bg-white px-4 py-3 text-sm outline-none
@@ -112,13 +110,26 @@
   animation: pop-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
   }
-  .animate-pop-in {
+  .animate-pop-in,
+  .animate-fade-in {
     animation: none;
   }
   html {

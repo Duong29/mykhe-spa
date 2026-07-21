@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { tipGuide, formatVnd, formatUsd } from '../data/services'
 import { IconCheck, IconStar, IconArrow } from './Icons'
 
 /**
@@ -55,6 +56,50 @@ export function PromoBanner() {
         </div>
       </div>
     </div>
+  )
+}
+
+/**
+ * Bảng tip tham khảo. Đặt ngay dưới form thay vì cuối trang — tip là khoản
+ * khách phải chuẩn bị tiền mặt nên không được để lọt xuống dưới phần quảng cáo.
+ * Dùng chung dữ liệu với trang Dịch vụ để hai nơi không bao giờ lệch số.
+ */
+export function TipGuide() {
+  const { t } = useTranslation()
+
+  return (
+    <section className="pb-4">
+      <div className="container-page max-w-4xl">
+        <div className="rounded-3xl bg-white p-6 ring-1 ring-ink-900/8 sm:p-8">
+          <h2 className="font-display text-xl font-semibold text-ink-800 sm:text-2xl">
+            {t('services.tipTitle')}
+          </h2>
+          <p className="mt-2 text-sm leading-relaxed text-ink-500">{t('services.tipNote')}</p>
+
+          <ul className="mt-5 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+            {tipGuide.map((tip) => (
+              <li
+                key={`${tip.min}-${tip.dry ? 'dry' : 'std'}`}
+                className="flex items-center justify-between gap-3 rounded-xl bg-cream px-4 py-3 text-sm"
+              >
+                <span className="text-ink-700">
+                  {tip.dry && <span className="text-ink-500">{t('services.tipDryLabel')} </span>}
+                  {tip.min}′
+                </span>
+                <span className="font-medium whitespace-nowrap text-clay-600">
+                  {formatVnd(tip.vnd)}
+                  <span className="ml-1 text-xs font-normal text-ink-300">
+                    {formatUsd(tip.usd)}
+                  </span>
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-4 text-xs leading-relaxed text-clay-600">{t('booking.tipIncluded')}</p>
+        </div>
+      </div>
+    </section>
   )
 }
 

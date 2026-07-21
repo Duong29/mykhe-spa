@@ -9,14 +9,16 @@ import {
   formatVnd,
   formatUsd,
   isDiscountable,
+  isTipIncluded,
+  tipFor,
   discountVnd,
-  discountUsd,
+  bookingTotals,
   ONLINE_DISCOUNT,
 } from '../data/services'
 import PageHeader from '../components/PageHeader'
 import Img from '../components/Img'
 import { IconCheck, IconArrow, IconClock, IconCalendar } from '../components/Icons'
-import { PromoBanner, BookingPerks } from '../components/BookingPromo'
+import { PromoBanner, TipGuide, BookingPerks } from '../components/BookingPromo'
 
 const STEPS = ['step1', 'step2', 'step3', 'step4']
 
@@ -54,16 +56,29 @@ const formatDateLong = (iso, lang) => {
  * Thẻ tóm tắt đơn đặt lịch — dùng chung cho bước 4 và màn hình hoàn tất
  * để hai nơi luôn trông giống nhau.
  */
-function BookingSummary({ service, form, total, totalUsd }) {
+function BookingSummary({ service, form, totals }) {
   const { t, i18n } = useTranslation()
   if (!service) return null
 
-  const discounted = isDiscountable(service, form.minutes)
-  const finalVnd = discountVnd(total, service, form.minutes)
-  const finalUsd = discountUsd(totalUsd, service, form.minutes)
+  const { before, after, afterUsd, discounted } = totals
+  const tipIncluded = isTipIncluded(form.minutes)
+  const tip = tipFor(service, form.minutes)
+  const guests = form.adults + form.children
+  // Tip tính theo đầu khách, cộng thẳng vào tổng để khách biết cần cầm bao nhiêu
+  const tipTotal = tip ? tip.vnd * guests : 0
+  const tipTotalUsd = tip ? tip.usd * guests : 0
+  const grandVnd = after == null ? null : after + tipTotal
+  const grandUsd = afterUsd == null ? null : afterUsd + tipTotalUsd
+
+  // Loại khách suy ra từ dịch vụ: gói trẻ em thì là trẻ, còn lại là người lớn
+  const guestLabel = `${guests} ${(service.maxHeightCm
+    ? t('booking.children')
+    : t('booking.adults')
+  ).toLowerCase()}`
 
   // Chỉ hiện dòng nào khách thực sự điền, khỏi phải nhìn một loạt dấu gạch ngang
   const rows = [
+    [t('booking.guests'), guestLabel],
     [t('booking.name'), form.name],
     [t('booking.phone'), form.phone],
     [t('booking.email'), form.email],
@@ -85,7 +100,7 @@ function BookingSummary({ service, form, total, totalUsd }) {
           </p>
           <p className="mt-1.5 flex items-center gap-1.5 text-sm text-ink-500">
             <IconClock size={14} />
-            {form.minutes} {t('common.min')} × {form.guests}
+            {form.minutes} {t('common.min')} × {guests}
           </p>
         </div>
       </div>
@@ -115,12 +130,48 @@ function BookingSummary({ service, form, total, totalUsd }) {
         </dl>
       )}
 
-      {/* Tạm tính */}
+      {/* Bóc tách tiền: giá dịch vụ + tiền tip = tổng khách thực trả */}
       <div className="border-t border-ink-900/8 bg-clay-50 px-4 py-4 sm:px-5">
-        <div className="flex items-center justify-between gap-4">
+        {tip && (
+          <>
+            <div className="flex items-start justify-between gap-4">
+              <div className="min-w-0">
+                <span className="text-sm text-ink-600">{t('booking.total')}</span>
+                {discounted && (
+                  <span className="mt-1.5 flex w-fit items-center gap-1 rounded-full bg-clay-500 px-2.5 py-1 text-[11px] font-semibold text-white">
+                    <IconCheck size={12} />
+                    {t('booking.discountApplied', { percent: ONLINE_DISCOUNT * 100 })}
+                  </span>
+                )}
+              </div>
+              <span className="text-right text-sm whitespace-nowrap text-ink-800">
+                {discounted && <s className="mr-2 text-ink-300">{formatVnd(before)}</s>}
+                {formatVnd(after)}
+              </span>
+            </div>
+
+            <div className="mt-2.5 flex items-center justify-between gap-4">
+              <span className="text-sm text-ink-600">
+                {t('booking.tipRow')}
+                <span className="ml-1.5 text-xs text-ink-400">
+                  ({form.minutes}′ × {guests})
+                </span>
+              </span>
+              <span className="text-sm whitespace-nowrap text-ink-800">{formatVnd(tipTotal)}</span>
+            </div>
+          </>
+        )}
+
+        <div
+          className={`flex items-center justify-between gap-4 ${
+            tip ? 'mt-3 border-t border-clay-500/20 pt-3' : ''
+          }`}
+        >
           <div className="min-w-0">
-            <span className="text-sm font-medium text-ink-700">{t('booking.total')}</span>
-            {discounted && (
+            <span className="text-sm font-medium text-ink-700">
+              {tip ? t('booking.grandTotal') : t('booking.total')}
+            </span>
+            {!tip && discounted && (
               <span className="mt-1.5 flex w-fit items-center gap-1 rounded-full bg-clay-500 px-2.5 py-1 text-[11px] font-semibold text-white">
                 <IconCheck size={12} />
                 {t('booking.discountApplied', { percent: ONLINE_DISCOUNT * 100 })}
@@ -129,23 +180,24 @@ function BookingSummary({ service, form, total, totalUsd }) {
           </div>
 
           <div className="text-right">
-            {discounted && (
-              <s className="block text-sm text-ink-300">{formatVnd(total)}</s>
+            {!tip && discounted && (
+              <s className="block text-sm text-ink-300">{formatVnd(before)}</s>
             )}
             <span className="font-display text-2xl leading-none font-semibold text-clay-600">
-              {formatVnd(finalVnd)}
+              {formatVnd(grandVnd)}
               <span className="ml-1.5 text-sm font-normal text-ink-500">
-                ({formatUsd(finalUsd)})
+                ({formatUsd(grandUsd)})
               </span>
             </span>
           </div>
         </div>
 
-        {!discounted && (
-          <p className="mt-3 text-xs leading-relaxed text-ink-400">
-            {t('booking.noDiscountNote')}
-          </p>
-        )}
+        {/* Giải thích vì sao số tiền ra như vậy — tránh khách thắc mắc ở quầy */}
+        <div className="mt-3 space-y-1.5 text-xs leading-relaxed text-ink-400">
+          {!discounted && <p>{t('booking.noDiscountNote')}</p>}
+          {tipIncluded && <p className="text-clay-600">{t('booking.tipIncluded')}</p>}
+          {service.maxHeightCm && <p className="text-clay-600">{t('services.kidsHeight')}</p>}
+        </div>
       </div>
     </div>
   )
@@ -162,12 +214,16 @@ export default function Booking() {
   const [form, setForm] = useState(() => {
     const preset = params.get('service')
     const svc = preset && findService(preset) ? findService(preset) : null
+    const kidsOnly = Boolean(svc?.maxHeightCm)
     return {
       serviceId: svc?.id || '',
       minutes: svc?.prices.find((p) => p.vnd != null)?.min || null,
       date: '',
       time: '',
-      guests: 1,
+      // Tách người lớn / trẻ em vì ưu đãi không áp cho suất trẻ em.
+      // Gói dành riêng cho trẻ em thì không có suất người lớn.
+      adults: kidsOnly ? 0 : 1,
+      children: kidsOnly ? 1 : 0,
       name: '',
       phone: '',
       email: '',
@@ -177,12 +233,27 @@ export default function Booking() {
 
   const service = form.serviceId ? findService(form.serviceId) : null
   const priceRow = service?.prices.find((p) => p.min === form.minutes) || null
-  const total = priceRow?.vnd ? priceRow.vnd * form.guests : null
-  const totalUsd = priceRow?.usd ? priceRow.usd * form.guests : null
-  // Số tiền khách thực trả sau ưu đãi đặt online
-  const totalAfterDiscount = discountVnd(total, service, form.minutes)
+
+  // Gói dành riêng cho trẻ em: khách toàn là trẻ. Các gói còn lại: toàn người lớn.
+  // Trẻ muốn massage thì đặt gói trẻ em, nên không có đơn nào lẫn cả hai.
+  const kidsOnly = Boolean(service?.maxHeightCm)
+  const guests = form.adults + form.children
+  const totals = bookingTotals(priceRow, service, form.minutes, guests)
+  const tip = tipFor(service, form.minutes)
 
   const set = (patch) => setForm((f) => ({ ...f, ...patch }))
+
+  /** Chọn dịch vụ và chuyển số khách sang đúng loại của dịch vụ đó */
+  const pickService = (s) => {
+    const onlyKids = Boolean(s.maxHeightCm)
+    const count = Math.max(1, form.adults + form.children)
+    set({
+      serviceId: s.id,
+      minutes: s.prices.find((p) => p.vnd != null)?.min || null,
+      adults: onlyKids ? 0 : count,
+      children: onlyKids ? count : 0,
+    })
+  }
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -194,6 +265,7 @@ export default function Booking() {
     if (s === 1) {
       if (!form.date) e.date = t('booking.errDate')
       if (!form.time) e.time = t('booking.errTime')
+      if (form.adults + form.children < 1) e.guests = t('booking.errGuests')
     }
     if (s === 2) {
       if (!form.name.trim()) e.name = t('booking.errName')
@@ -212,11 +284,17 @@ export default function Booking() {
     // Chưa có nơi nhận đơn — tạm lưu ở máy khách cho tới khi dựng xong phần gửi về spa.
     try {
       const all = JSON.parse(localStorage.getItem('mykhe-bookings') || '[]')
+      const tip = tipFor(service, form.minutes)
+      const guests = form.adults + form.children
+      const tipTotal = tip ? tip.vnd * guests : 0
       all.push({
         ...form,
-        total,
-        totalAfterDiscount,
-        discountApplied: isDiscountable(service, form.minutes),
+        total: totals.before,
+        totalAfterDiscount: totals.after,
+        tipTotal,
+        grandTotal: totals.after == null ? null : totals.after + tipTotal,
+        discountApplied: totals.discounted,
+        tipIncluded: isTipIncluded(form.minutes),
         createdAt: new Date().toISOString(),
       })
       localStorage.setItem('mykhe-bookings', JSON.stringify(all))
@@ -251,8 +329,7 @@ export default function Booking() {
               <BookingSummary
                 service={service}
                 form={form}
-                total={total}
-                totalUsd={totalUsd}
+                totals={totals}
               />
             </div>
 
@@ -344,12 +421,7 @@ export default function Booking() {
                       <button
                         key={s.id}
                         type="button"
-                        onClick={() =>
-                          set({
-                            serviceId: s.id,
-                            minutes: s.prices.find((p) => p.vnd != null)?.min || null,
-                          })
-                        }
+                        onClick={() => pickService(s)}
                         className={`flex items-center gap-3.5 rounded-2xl p-3 text-left transition ${
                           active
                             ? 'bg-clay-50 ring-2 ring-clay-500'
@@ -392,6 +464,13 @@ export default function Booking() {
                   <p className="mt-3 text-sm text-red-600">{errors.serviceId}</p>
                 )}
 
+                {/* Điều kiện chiều cao của gói trẻ em — báo ngay khi khách vừa chọn */}
+                {service?.maxHeightCm && (
+                  <p className="mt-4 rounded-xl bg-clay-50 px-4 py-3 text-sm leading-relaxed text-clay-700">
+                    {t('services.kidsHeight')}
+                  </p>
+                )}
+
                 {/* Chọn thời lượng */}
                 {service && service.prices.filter((p) => p.vnd != null).length > 1 && (
                   <div className="mt-8">
@@ -426,6 +505,24 @@ export default function Booking() {
                     </div>
                   </div>
                 )}
+
+                {/* Báo tiền tip ngay từ bước chọn dịch vụ, để khách không bị
+                    bất ngờ ở bước xác nhận. Đặt ngoài khối chọn thời lượng vì
+                    có dịch vụ chỉ có đúng một mốc thời gian. */}
+                {service &&
+                  (tip ? (
+                    <p className="mt-5 flex flex-wrap items-baseline gap-x-1.5 gap-y-1 border-t border-ink-900/8 pt-4 text-sm text-ink-500">
+                      <span>{t('booking.tipRow')}:</span>
+                      <span className="font-medium text-ink-800">{formatVnd(tip.vnd)}</span>
+                      <span className="text-xs text-ink-400">{formatUsd(tip.usd)}</span>
+                      <span>· {t('services.tipPerGuest')}</span>
+                      <span className="text-ink-400">— {t('booking.tipNotIncluded')}</span>
+                    </p>
+                  ) : (
+                    <p className="mt-5 border-t border-ink-900/8 pt-4 text-sm text-clay-600">
+                      {t('booking.tipIncluded')}
+                    </p>
+                  ))}
               </div>
             )}
 
@@ -436,7 +533,8 @@ export default function Booking() {
                   {t('booking.step2')}
                 </h2>
 
-                <div className="mt-6 grid gap-6 sm:grid-cols-2">
+                {/* Ngày và số khách nằm cùng một hàng */}
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   <div>
                     <label htmlFor="date" className="label">
                       {t('booking.pickDate')}
@@ -451,14 +549,19 @@ export default function Booking() {
                     />
                     {errors.date && <p className="mt-1.5 text-sm text-red-600">{errors.date}</p>}
                   </div>
+
+                  {/* Chỉ một ô: gói trẻ em hỏi số bé, các gói khác hỏi số người lớn */}
                   <div>
                     <label htmlFor="guests" className="label">
-                      {t('booking.guests')}
+                      {kidsOnly ? t('booking.children') : t('booking.adults')}
                     </label>
                     <select
                       id="guests"
-                      value={form.guests}
-                      onChange={(e) => set({ guests: Number(e.target.value) })}
+                      value={guests}
+                      onChange={(e) => {
+                        const n = Number(e.target.value)
+                        set(kidsOnly ? { adults: 0, children: n } : { adults: n, children: 0 })
+                      }}
                       className="field"
                     >
                       {[1, 2, 3, 4, 5, 6].map((n) => (
@@ -468,6 +571,10 @@ export default function Booking() {
                       ))}
                     </select>
                   </div>
+
+                  {errors.guests && (
+                    <p className="text-sm text-red-600 sm:col-span-full">{errors.guests}</p>
+                  )}
                 </div>
 
                 <div className="mt-7">
@@ -570,8 +677,7 @@ export default function Booking() {
                   <BookingSummary
                     service={service}
                     form={form}
-                    total={total}
-                    totalUsd={totalUsd}
+                    totals={totals}
                   />
                 </div>
 
@@ -607,6 +713,7 @@ export default function Booking() {
         </div>
       </section>
 
+      <TipGuide />
       <BookingPerks />
     </>
   )

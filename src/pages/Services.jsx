@@ -114,11 +114,14 @@ export default function Services() {
             <ul className="mt-5 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
               {tipGuide.map((tip) => (
                 <li
-                  key={tip.label}
+                  key={`${tip.min}-${tip.dry ? 'dry' : 'std'}`}
                   className="flex items-center justify-between rounded-xl bg-white px-4 py-3 text-sm ring-1 ring-ink-900/5"
                 >
-                  <span className="text-ink-700">{tip.label}</span>
-                  <span className="font-medium text-clay-600">
+                  <span className="text-ink-700">
+                    {tip.dry && <span className="text-ink-500">{t('services.tipDryLabel')} </span>}
+                    {tip.min}′
+                  </span>
+                  <span className="font-medium whitespace-nowrap text-clay-600">
                     {formatVnd(tip.vnd)}
                     <span className="ml-1 text-xs font-normal text-ink-300">
                       {formatUsd(tip.usd)}
