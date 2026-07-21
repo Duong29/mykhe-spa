@@ -204,10 +204,10 @@ export default {
       p3: {
         tag: 'Câu chuyện',
         date: '15/06/2026',
-        title: 'Vì sao chúng tôi chọn tông cam đất cho toàn bộ không gian',
+        title: 'Lấy cảm hứng từ hoàng hôn biển Mỹ Khê',
         excerpt:
-          'Màu cam đất gợi lại ánh hoàng hôn trên biển Mỹ Khê — ấm, gần gũi và làm dịu thần kinh.',
-        body: 'Khi thiết kế cơ sở tại Võ Nguyên Giáp, chúng tôi đã thử qua rất nhiều bảng màu: trắng tối giản, xanh rêu, be trung tính. Nhưng chỉ có tông cam đất mang lại đúng cảm giác mà chúng tôi muốn khách nhận được ngay khi bước vào — sự ấm áp.\n\nĐó cũng chính là màu của hoàng hôn trên biển Mỹ Khê, cách spa vài trăm mét. Kết hợp cùng khung sắt đen, cây xanh rủ và ánh đèn vàng, không gian trở nên vừa hiện đại vừa dễ chịu, không lạnh lẽo như nhiều spa khác.',
+          'Màu cam đất phủ khắp không gian gợi lại khoảnh khắc hoàng hôn buông xuống trên biển Mỹ Khê — khi ánh nắng dịu lại và mọi mệt mỏi cũng lắng xuống theo.',
+        body: 'Chỉ cách bãi biển Mỹ Khê vài phút di chuyển, Da Nang My Khe Spa được tạo nên từ chính những cảm xúc mà Đà Nẵng mang lại — sự thư thái, ấm áp và nhịp sống chậm rãi của thành phố biển.\n\nNgay từ khi bắt đầu thiết kế không gian, chúng tôi đã thử qua nhiều bảng màu khác nhau: sắc trắng tối giản, tông be trung tính hay màu xanh thiên nhiên. Nhưng cuối cùng, chúng tôi lựa chọn màu cam đất — gam màu gợi nhớ đến khoảnh khắc hoàng hôn buông xuống trên biển Mỹ Khê, khi ánh nắng trở nên dịu nhẹ và mọi mệt mỏi dần lắng lại.\n\nSắc cam ấy được kết hợp cùng những khung thép đen mạnh mẽ, các mảng xanh nhiệt đới và hệ thống ánh sáng vàng ấm áp để tạo nên một không gian vừa hiện đại, vừa gần gũi.\n\nBên trong spa, từng chi tiết đều được sắp đặt có chủ đích. Những bộ trang phục họa tiết lá cây, các bức tranh mang hơi thở biển và phố cổ, những chậu hoa nhỏ hay những mảng cây xanh rủ xuống từ trần nhà đều góp phần tạo nên cảm giác thư giãn ngay từ ánh nhìn đầu tiên.\n\nMặt tiền của Da Nang My Khe Spa cũng được phủ bởi cây xanh và ánh đèn vàng, như một khu vườn nhỏ giữa lòng thành phố biển. Đó không chỉ là một công trình kiến trúc, mà còn là lời chào đầu tiên dành cho mỗi vị khách trước khi bắt đầu hành trình chăm sóc cơ thể và tái tạo năng lượng.\n\nChúng tôi tin rằng, một trải nghiệm thư giãn trọn vẹn không chỉ đến từ kỹ thuật massage, mà còn được tạo nên bởi không gian, ánh sáng, màu sắc và những cảm xúc nhẹ nhàng mà khách hàng cảm nhận được trong từng khoảnh khắc.\n\nDa Nang My Khe Spa không chỉ là nơi để nghỉ ngơi, mà còn là nơi để bạn tạm gác lại nhịp sống vội vã và tận hưởng sự bình yên của Đà Nẵng theo một cách riêng.',
       },
       p4: {
         tag: 'Hướng dẫn',

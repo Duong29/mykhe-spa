@@ -9,7 +9,9 @@ import Img from '../components/Img'
 export const posts = [
   { id: 'p1', image: '/images/welcome-drink.png' },
   { id: 'p2', image: '/images/decor-shelf.png' },
-  { id: 'p3', image: '/images/lounge-2.png' },
+  // Ảnh sảnh buổi tối: tường cam đất, cây rủ từ trần, đèn vàng —
+  // đúng ba chi tiết mà bài viết mô tả.
+  { id: 'p3', image: '/images/lounge-evening.jpg' },
   { id: 'p4', image: '/images/room-couple.png' },
 ]
 

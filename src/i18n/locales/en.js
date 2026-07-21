@@ -203,10 +203,10 @@
       p3: {
         tag: 'Our story',
         date: 'June 15, 2026',
-        title: 'Why we chose terracotta for our entire space',
+        title: 'Inspired by the sunset over My Khe Beach',
         excerpt:
-          'Terracotta echoes the sunset over My Khe Beach — warm, familiar and quietly soothing.',
-        body: "When we designed our Vo Nguyen Giap location, we tried countless palettes: minimalist white, moss green, neutral beige. But only terracotta gave us the feeling we wanted guests to have the second they stepped inside — warmth.\n\nIt is also the colour of the sunset over My Khe Beach, just a few hundred metres away. Paired with black steel frames, trailing greenery and soft golden light, the space feels both modern and welcoming, never cold the way so many spas can be.",
+          'The earthy terracotta that washes over our space recalls the moment the sun sets on My Khe Beach — when the light softens and the weariness of the day settles with it.',
+        body: "Just minutes from My Khe Beach, Da Nang My Khe Spa was shaped by the very feelings this city gives you — ease, warmth and the unhurried rhythm of life beside the sea.\n\nWhen we first began designing the space, we tried palette after palette: minimalist white, neutral beige, the greens of the tropics. In the end we chose terracotta — an earthy orange that recalls the moment the sun sets over My Khe Beach, when the light turns gentle and the weariness of the day quietly settles.\n\nThat orange is set against bold black steel frames, sweeps of tropical greenery and warm yellow lighting, creating a space that feels modern and intimate at once.\n\nInside the spa, every detail is placed with intention. Leaf-patterned uniforms, paintings that carry the spirit of the sea and the old town, small pots of flowers and cascades of plants trailing from the ceiling — all of it invites you to relax from the very first glance.\n\nThe facade of Da Nang My Khe Spa is likewise covered in greenery and washed in golden light, like a small garden in the heart of the coastal city. It is more than architecture; it is our first greeting to every guest before the journey of restoring body and energy begins.\n\nWe believe a truly complete moment of relaxation comes not only from the massage itself, but from the space, the light, the colour and the quiet emotions a guest feels along the way.\n\nDa Nang My Khe Spa is not only a place to rest. It is a place to set the rush of life aside for a while and savour the calm of Da Nang in your own way.",
       },
       p4: {
         tag: 'Guide',
