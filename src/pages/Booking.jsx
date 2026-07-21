@@ -1,16 +1,22 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import { site } from '../data/site'
-import { services, findService, formatVnd, formatUsd } from '../data/services'
+import {
+  services,
+  findService,
+  formatVnd,
+  formatUsd,
+  isDiscountable,
+  discountVnd,
+  discountUsd,
+  ONLINE_DISCOUNT,
+} from '../data/services'
 import PageHeader from '../components/PageHeader'
 import Img from '../components/Img'
-import {
-  IconCheck,
-  IconArrow,
-  IconClock,
-} from '../components/Icons'
+import { IconCheck, IconArrow, IconClock, IconCalendar } from '../components/Icons'
+import { PromoBanner, BookingPerks } from '../components/BookingPromo'
 
 const STEPS = ['step1', 'step2', 'step3', 'step4']
 
@@ -28,6 +34,122 @@ const buildSlots = () => {
 const SLOTS = buildSlots()
 
 const todayStr = () => new Date().toISOString().slice(0, 10)
+
+/** '2026-07-22' -> 'Thứ Tư, 22 tháng 7, 2026' (theo ngôn ngữ đang chọn) */
+const formatDateLong = (iso, lang) => {
+  if (!iso) return '—'
+  try {
+    return new Intl.DateTimeFormat(lang, {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(new Date(iso + 'T00:00:00'))
+  } catch {
+    return iso
+  }
+}
+
+/**
+ * Thẻ tóm tắt đơn đặt lịch — dùng chung cho bước 4 và màn hình hoàn tất
+ * để hai nơi luôn trông giống nhau.
+ */
+function BookingSummary({ service, form, total, totalUsd }) {
+  const { t, i18n } = useTranslation()
+  if (!service) return null
+
+  const discounted = isDiscountable(service, form.minutes)
+  const finalVnd = discountVnd(total, service, form.minutes)
+  const finalUsd = discountUsd(totalUsd, service, form.minutes)
+
+  // Chỉ hiện dòng nào khách thực sự điền, khỏi phải nhìn một loạt dấu gạch ngang
+  const rows = [
+    [t('booking.name'), form.name],
+    [t('booking.phone'), form.phone],
+    [t('booking.email'), form.email],
+    [t('booking.noteShort'), form.note],
+  ].filter(([, value]) => value)
+
+  return (
+    <div className="overflow-hidden rounded-2xl text-left ring-1 ring-ink-900/10">
+      {/* Dịch vụ */}
+      <div className="flex gap-4 bg-cream p-4 sm:p-5">
+        <Img
+          src={service.image}
+          sizes="112px"
+          className="h-20 w-20 shrink-0 rounded-xl object-cover sm:h-24 sm:w-24"
+        />
+        <div className="min-w-0 self-center">
+          <p className="font-display text-lg leading-snug font-semibold text-ink-800">
+            {t(`services_list.${service.id}.name`)}
+          </p>
+          <p className="mt-1.5 flex items-center gap-1.5 text-sm text-ink-500">
+            <IconClock size={14} />
+            {form.minutes} {t('common.min')} × {form.guests}
+          </p>
+        </div>
+      </div>
+
+      {/* Ngày & giờ hẹn — thông tin khách cần nhớ nhất nên tách riêng cho nổi */}
+      <div className="flex items-center gap-4 border-t border-ink-900/8 bg-white px-4 py-4 sm:px-5">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-clay-50 text-clay-600">
+          <IconCalendar size={20} />
+        </span>
+        <div className="min-w-0">
+          <p className="font-medium text-ink-800 first-letter:uppercase">
+            {formatDateLong(form.date, i18n.language)}
+          </p>
+          <p className="mt-0.5 text-sm text-ink-500">{form.time}</p>
+        </div>
+      </div>
+
+      {/* Thông tin khách */}
+      {rows.length > 0 && (
+        <dl className="divide-y divide-ink-900/8 border-t border-ink-900/8 bg-white text-sm">
+          {rows.map(([label, value]) => (
+            <div key={label} className="flex gap-4 px-4 py-3 sm:px-5">
+              <dt className="w-28 shrink-0 text-ink-500 sm:w-32">{label}</dt>
+              <dd className="min-w-0 flex-1 break-words text-ink-800">{value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
+      {/* Tạm tính */}
+      <div className="border-t border-ink-900/8 bg-clay-50 px-4 py-4 sm:px-5">
+        <div className="flex items-center justify-between gap-4">
+          <div className="min-w-0">
+            <span className="text-sm font-medium text-ink-700">{t('booking.total')}</span>
+            {discounted && (
+              <span className="mt-1.5 flex w-fit items-center gap-1 rounded-full bg-clay-500 px-2.5 py-1 text-[11px] font-semibold text-white">
+                <IconCheck size={12} />
+                {t('booking.discountApplied', { percent: ONLINE_DISCOUNT * 100 })}
+              </span>
+            )}
+          </div>
+
+          <div className="text-right">
+            {discounted && (
+              <s className="block text-sm text-ink-300">{formatVnd(total)}</s>
+            )}
+            <span className="font-display text-2xl leading-none font-semibold text-clay-600">
+              {formatVnd(finalVnd)}
+              <span className="ml-1.5 text-sm font-normal text-ink-500">
+                ({formatUsd(finalUsd)})
+              </span>
+            </span>
+          </div>
+        </div>
+
+        {!discounted && (
+          <p className="mt-3 text-xs leading-relaxed text-ink-400">
+            {t('booking.noDiscountNote')}
+          </p>
+        )}
+      </div>
+    </div>
+  )
+}
 
 export default function Booking() {
   const { t, i18n } = useTranslation()
@@ -57,6 +179,8 @@ export default function Booking() {
   const priceRow = service?.prices.find((p) => p.min === form.minutes) || null
   const total = priceRow?.vnd ? priceRow.vnd * form.guests : null
   const totalUsd = priceRow?.usd ? priceRow.usd * form.guests : null
+  // Số tiền khách thực trả sau ưu đãi đặt online
+  const totalAfterDiscount = discountVnd(total, service, form.minutes)
 
   const set = (patch) => setForm((f) => ({ ...f, ...patch }))
 
@@ -84,30 +208,17 @@ export default function Booking() {
   const next = () => validate(step) && setStep((s) => Math.min(s + 1, 3))
   const back = () => setStep((s) => Math.max(s - 1, 0))
 
-  // Nội dung gửi về lễ tân (Telegram / Email)
-  const message = useMemo(() => {
-    if (!service) return ''
-    return [
-      `[${site.brand}] ĐẶT LỊCH MỚI`,
-      `• Dịch vụ: ${t(`services_list.${service.id}.name`)} (${form.minutes}')`,
-      `• Thời gian: ${form.date} ${form.time}`,
-      `• Số khách: ${form.guests}`,
-      `• Khách hàng: ${form.name}`,
-      `• SĐT: ${form.phone}`,
-      form.email ? `• Email: ${form.email}` : null,
-      form.note ? `• Ghi chú: ${form.note}` : null,
-      total ? `• Tạm tính: ${formatVnd(total)}` : null,
-      `• Ngôn ngữ khách: ${i18n.language.toUpperCase()}`,
-    ]
-      .filter(Boolean)
-      .join('\n')
-  }, [service, form, total, t, i18n.language])
-
   const submit = () => {
-    // Chưa có phần mềm quản lý riêng → lưu tạm ở máy khách và chuyển tiếp qua Telegram.
+    // Chưa có nơi nhận đơn — tạm lưu ở máy khách cho tới khi dựng xong phần gửi về spa.
     try {
       const all = JSON.parse(localStorage.getItem('mykhe-bookings') || '[]')
-      all.push({ ...form, total, createdAt: new Date().toISOString() })
+      all.push({
+        ...form,
+        total,
+        totalAfterDiscount,
+        discountApplied: isDiscountable(service, form.minutes),
+        createdAt: new Date().toISOString(),
+      })
       localStorage.setItem('mykhe-bookings', JSON.stringify(all))
     } catch {
       /* bỏ qua nếu trình duyệt chặn localStorage */
@@ -120,19 +231,34 @@ export default function Booking() {
     return (
       <>
         <PageHeader title={t('booking.title')} image="/images/entrance-arch.png" />
-        <section className="py-16 lg:py-24">
-          <div className="container-page max-w-2xl text-center">
-            <span className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-clay-50 text-clay-600">
-              <IconCheck size={40} />
-            </span>
-            <h2 className="mt-7 font-display text-3xl font-semibold text-ink-800">
-              {t('booking.doneTitle')}
-            </h2>
-            <p className="mt-4 leading-relaxed text-ink-500">{t('booking.doneSub')}</p>
+        {/* Nền trắng để thẻ tóm tắt (có phần đầu màu kem) nổi hẳn lên,
+            giống hệt bối cảnh của nó ở bước 4. */}
+        <section className="bg-white py-16 lg:py-24">
+          <div className="container-page max-w-xl">
+            <div className="text-center">
+              <span className="animate-pop-in mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-clay-500 text-white shadow-lg shadow-clay-500/30">
+                <IconCheck size={32} />
+              </span>
+              <h2 className="mt-6 font-display text-3xl font-semibold text-ink-800">
+                {t('booking.doneTitle')}
+              </h2>
+              <p className="mx-auto mt-3 max-w-md leading-relaxed text-ink-500">
+                {t('booking.doneSub')}
+              </p>
+            </div>
 
-            <pre className="mt-8 overflow-x-auto rounded-2xl bg-white p-6 text-left font-sans text-sm leading-relaxed whitespace-pre-wrap text-ink-700 ring-1 ring-ink-900/8">
-              {message}
-            </pre>
+            <div className="mt-8">
+              <BookingSummary
+                service={service}
+                form={form}
+                total={total}
+                totalUsd={totalUsd}
+              />
+            </div>
+
+            <p className="mt-5 text-center text-xs leading-relaxed text-ink-300">
+              {t('booking.noteChannel')}
+            </p>
 
             <button
               type="button"
@@ -141,7 +267,7 @@ export default function Booking() {
                 setStep(0)
                 set({ date: '', time: '', note: '' })
               }}
-              className="btn-outline mt-8"
+              className="btn-outline mx-auto mt-8 flex"
             >
               {t('booking.newBooking')}
             </button>
@@ -160,7 +286,14 @@ export default function Booking() {
         image="/images/reception.png"
       />
 
-      <section className="py-14 lg:py-20">
+      <section className="pt-12 lg:pt-16">
+        <div className="container-page max-w-4xl">
+          <PromoBanner />
+        </div>
+      </section>
+
+      {/* scroll-mt để header cố định không che mất form khi nhảy tới #booking-form */}
+      <section id="booking-form" className="scroll-mt-24 py-10 lg:py-14">
         <div className="container-page max-w-4xl">
           {/* Thanh tiến trình */}
           <ol className="flex items-center">
@@ -232,10 +365,23 @@ export default function Booking() {
                           <span className="block text-sm font-semibold text-ink-800">
                             {t(`services_list.${s.id}.name`)}
                           </span>
-                          <span className="mt-0.5 block text-xs text-clay-600">
-                            {t('common.from')}{' '}
-                            {formatVnd(s.prices.filter((p) => p.vnd)[0]?.vnd)}
-                          </span>
+                          {(() => {
+                            // Giá "từ ..." cũng phải là giá sau ưu đãi, nếu không
+                            // con số sẽ nhảy khi khách sang bước xác nhận.
+                            const cheapest = s.prices.filter((p) => p.vnd)[0]
+                            const off = isDiscountable(s, cheapest?.min)
+                            return (
+                              <span className="mt-0.5 flex items-baseline gap-1.5 text-xs">
+                                <span className="text-ink-400">{t('common.from')}</span>
+                                {off && (
+                                  <s className="text-ink-300">{formatVnd(cheapest?.vnd)}</s>
+                                )}
+                                <span className="font-semibold text-clay-600">
+                                  {formatVnd(discountVnd(cheapest?.vnd, s, cheapest?.min))}
+                                </span>
+                              </span>
+                            )
+                          })()}
                         </span>
                         {active && <IconCheck size={20} className="shrink-0 text-clay-500" />}
                       </button>
@@ -267,8 +413,13 @@ export default function Booking() {
                             <span className="flex items-center gap-1.5 font-medium">
                               <IconClock size={14} /> {p.min} {t('common.min')}
                             </span>
-                            <span className="mt-0.5 block text-xs opacity-80">
-                              {formatVnd(p.vnd)}
+                            <span className="mt-0.5 flex items-baseline gap-1.5 text-xs">
+                              {isDiscountable(service, p.min) && (
+                                <s className="opacity-55">{formatVnd(p.vnd)}</s>
+                              )}
+                              <span className="opacity-90">
+                                {formatVnd(discountVnd(p.vnd, service, p.min))}
+                              </span>
                             </span>
                           </button>
                         ))}
@@ -415,49 +566,13 @@ export default function Booking() {
                   {t('booking.summary')}
                 </h2>
 
-                <div className="mt-6 flex gap-4 rounded-2xl bg-cream p-4">
-                  {service && (
-                    <Img
-                      src={service.image}
-                      sizes="96px"
-                      className="h-24 w-24 shrink-0 rounded-xl object-cover"
-                    />
-                  )}
-                  <div className="min-w-0">
-                    <p className="font-display text-lg font-semibold text-ink-800">
-                      {service && t(`services_list.${service.id}.name`)}
-                    </p>
-                    <p className="mt-1 flex items-center gap-1.5 text-sm text-ink-500">
-                      <IconClock size={14} /> {form.minutes} {t('common.min')} × {form.guests}
-                    </p>
-                    <p className="mt-1 text-sm text-ink-500">
-                      {form.date} · {form.time}
-                    </p>
-                  </div>
-                </div>
-
-                <dl className="mt-6 divide-y divide-ink-900/8 text-sm">
-                  {[
-                    [t('booking.name'), form.name],
-                    [t('booking.phone'), form.phone],
-                    [t('booking.email'), form.email || '—'],
-                    [t('booking.note'), form.note || '—'],
-                  ].map(([k, v]) => (
-                    <div key={k} className="flex gap-6 py-3">
-                      <dt className="w-32 shrink-0 text-ink-500">{k}</dt>
-                      <dd className="min-w-0 flex-1 break-words text-ink-800">{v}</dd>
-                    </div>
-                  ))}
-                </dl>
-
-                <div className="mt-6 flex items-center justify-between rounded-2xl bg-clay-50 px-5 py-4">
-                  <span className="font-medium text-ink-700">{t('booking.total')}</span>
-                  <span className="font-display text-2xl font-semibold text-clay-600">
-                    {formatVnd(total)}
-                    <span className="ml-2 text-sm font-normal text-ink-500">
-                      ({formatUsd(totalUsd)})
-                    </span>
-                  </span>
+                <div className="mt-6">
+                  <BookingSummary
+                    service={service}
+                    form={form}
+                    total={total}
+                    totalUsd={totalUsd}
+                  />
                 </div>
 
                 <p className="mt-4 text-xs leading-relaxed text-ink-300">
@@ -491,6 +606,8 @@ export default function Booking() {
           </div>
         </div>
       </section>
+
+      <BookingPerks />
     </>
   )
 }

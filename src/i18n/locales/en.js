@@ -115,11 +115,14 @@
     phone: 'Phone number',
     email: 'Email',
     note: 'Notes (allergies, pressure preference, special requests...)',
+    noteShort: 'Notes',
     notePlaceholder: 'For example: female therapist please, medium pressure, 5 months pregnant...',
     summary: 'Booking summary',
     service: 'Service',
     dateTime: 'Date & time',
     total: 'Estimated total',
+    discountApplied: '{{percent}}% off applied',
+    noDiscountNote: 'The online booking offer does not apply to this treatment.',
     confirm: 'Confirm booking',
     errName: 'Please enter your full name',
     errPhone: 'Please enter a valid phone number',
@@ -130,6 +133,36 @@
     doneSub: 'Our reception team will call the number you provided to confirm your appointment.',
     newBooking: 'Make another booking',
     noteChannel: 'Our reception team will contact you to confirm before the booking is final.',
+
+    // Offer programme shown on the booking page
+    promo: {
+      badge: 'Offer',
+      title: 'Book online — save up to 20%',
+      lead: 'Enjoy our premium treatments at a reduced rate, exclusively for guests who book ahead through the official Da Nang My Khe Spa website.',
+      discount: 'Save 20% on most treatments on the menu.',
+      exceptLabel: 'Not valid on',
+      except1: 'Kids treatments',
+      except2: '30-minute packages',
+
+      whyTitle: 'Why book ahead?',
+      why1: 'Save 20% instantly when you book on our website.',
+      why2: 'Pick the time and treatment that suit you.',
+      why3: 'Less waiting, with priority given to your preferred slot.',
+      why4: 'Earn another 10% off your next visit by leaving a review.',
+
+      returnTitle: 'A thank-you for returning guests',
+      returnLead:
+        'We are grateful to every guest who keeps choosing Da Nang My Khe Spa.',
+      returnHow: 'Share your experience on Google or Tripadvisor with:',
+      returnReq1: 'At least 50 characters',
+      returnReq2: '3 photos included',
+      returnResult:
+        'Once our reception team verifies your review, you receive an extra 10% off your next treatment.',
+
+      ctaTitle: 'Book your visit today',
+      ctaSub:
+        'Step into a Korean-standard sanctuary and enjoy offers available only at Da Nang My Khe Spa.',
+    },
   },
   contact: {
     title: 'Contact',

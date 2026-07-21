@@ -167,3 +167,26 @@ export const fromPrice = (service) => {
   const valid = service.prices.filter((p) => p.vnd != null)
   return valid.length ? valid.reduce((a, b) => (a.vnd < b.vnd ? a : b)) : null
 }
+
+/* ---------------------- Ưu đãi đặt lịch trực tuyến ---------------------- */
+
+export const ONLINE_DISCOUNT = 0.2
+
+/**
+ * Ưu đãi 20% áp dụng cho toàn menu, trừ dịch vụ trẻ em và các gói 30 phút.
+ * Đây là nguồn duy nhất quyết định giảm giá — mọi nơi hiển thị tiền đều hỏi hàm này
+ * để không có chỗ nào lệch chỗ nào.
+ */
+export const isDiscountable = (service, minutes) =>
+  Boolean(service) && service.id !== 'kids' && minutes !== 30
+
+/** Làm tròn xuống bội số 1.000₫ cho gọn hoá đơn */
+export const discountVnd = (vnd, service, minutes) =>
+  vnd == null || !isDiscountable(service, minutes)
+    ? vnd
+    : Math.round((vnd * (1 - ONLINE_DISCOUNT)) / 1000) * 1000
+
+export const discountUsd = (usd, service, minutes) =>
+  usd == null || !isDiscountable(service, minutes)
+    ? usd
+    : Math.round(usd * (1 - ONLINE_DISCOUNT))

@@ -4,25 +4,31 @@ export const site = {
   brandShort: "My Khe Spa",
   logo: "/images/logo.jpg",
 
-  phone: "+84 000 000 000",
-  phoneHref: "tel:+84000000000",
+  // Hiển thị dạng quốc tế vì phần lớn khách là người nước ngoài;
+  // số này bấm gọi được cả trong lẫn ngoài Việt Nam.
+  phone: "+84 362 772 449",
+  phoneHref: "tel:+84362772449",
   email: "hello@danangmykhespa.com",
 
   // Chi nhánh chính (yêu cầu: chỉ hiển thị 1 địa chỉ)
   address: "402 Võ Nguyên Giáp, Ngũ Hành Sơn, Đà Nẵng",
-  mapEmbed:
-    "https://www.google.com/maps?q=402+V%C3%B5+Nguy%C3%AAn+Gi%C3%A1p,+Ng%C5%A9+H%C3%A0nh+S%C6%A1n,+%C4%90%C3%A0+N%E1%BA%B5ng&output=embed",
-  mapLink: "https://maps.google.com/?q=402+Vo+Nguyen+Giap+Ngu+Hanh+Son+Da+Nang",
+
+  // Toạ độ lấy từ hồ sơ Google Business của spa, ghim đúng cửa hàng
+  // thay vì để Google tự đoán theo địa chỉ dạng chữ.
+  mapEmbed: "https://maps.google.com/maps?q=16.0424367,108.248137&z=17&output=embed",
+  // cid = mã doanh nghiệp trên Google (0x45cbe7e550d22840 đổi sang hệ 10)
+  mapLink: "https://maps.google.com/?cid=5029368380978767936",
 
   hoursFrom: "09:00",
   hoursTo: "22:00",
 
-  // Đánh giá Google — số lượt đánh giá vẫn là số tạm, cập nhật khi có con số thật
+  // Đánh giá Google — cả hai số đều lấy từ hồ sơ thật của spa
   google: {
     rating: 4.3,
-    count: 486,
+    count: 871,
+    // Mở thẳng tab đánh giá của spa (đuôi !9m1!1b1), khách bấm "Viết bài đánh giá" ngay tại đó
     reviewUrl:
-      "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID",
+      "https://www.google.com/maps/place/Da+Nang+Mykhe+Spa/@16.0424418,108.2455621,2167m/data=!3m1!1e3!4m16!1m9!3m8!1s0x3142176637977605:0x45cbe7e550d22840!2sDa+Nang+Mykhe+Spa!8m2!3d16.0424367!4d108.248137!9m1!1b1!16s%2Fg%2F11fyzbpzpw!3m5!1s0x3142176637977605:0x45cbe7e550d22840!8m2!3d16.0424367!4d108.248137!16s%2Fg%2F11fyzbpzpw!5m1!1e1",
   },
 
   social: {

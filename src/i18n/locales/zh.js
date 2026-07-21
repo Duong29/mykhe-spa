@@ -113,11 +113,14 @@
     phone: "联系电话",
     email: "电子邮箱",
     note: "备注（过敏情况、按摩力度、特殊需求…）",
+    noteShort: "备注",
     notePlaceholder: "例如：希望女技师、力度适中、已怀孕 5 个月…",
     summary: "预约信息",
     service: "服务项目",
     dateTime: "预约时间",
     total: "预估费用",
+    discountApplied: "已享 {{percent}}% 优惠",
+    noDiscountNote: "本项服务不参与在线预约优惠。",
     confirm: "确认预约",
     errName: "请填写您的姓名",
     errPhone: "请填写有效的联系电话",
@@ -128,6 +131,36 @@
     doneSub: "前台将拨打您留下的电话号码，与您确认预约。",
     newBooking: "再预约一单",
     noteChannel: "预约需经前台电话确认后方才生效。",
+
+    // 预约页面展示的优惠活动
+    promo: {
+      badge: "专属优惠",
+      title: "在线预约 —— 尊享最高 20% 优惠",
+      lead: "通过 Da Nang My Khe Spa 官方网站提前预约，即可以优惠价格尽享我们的高端理疗，此礼遇仅限线上预约的贵宾。",
+      discount: "菜单内大部分理疗项目立减 20%。",
+      exceptLabel: "不适用于",
+      except1: "儿童理疗项目",
+      except2: "30 分钟套餐",
+
+      whyTitle: "为何建议提前预约？",
+      why1: "通过官网预约，立减 20%。",
+      why2: "自由挑选您心仪的时段与理疗项目。",
+      why3: "减少等候时间，优先为您安排理想时段。",
+      why4: "完成评价后，下次到访再享 10% 优惠。",
+
+      returnTitle: "回头客专属礼遇",
+      returnLead:
+        "感谢每一位始终信赖并选择岘港美溪水疗的贵宾。",
+      returnHow: "在 Google 或 Tripadvisor 上分享您的体验，需满足：",
+      returnReq1: "不少于 50 字",
+      returnReq2: "附上 3 张照片",
+      returnResult:
+        "经前台确认评价有效后，您下次理疗即可额外享受 10% 优惠。",
+
+      ctaTitle: "即刻预约您的到访",
+      ctaSub:
+        "步入韩式标准的静谧空间，尽享 Da Nang My Khe Spa 独有的专属礼遇。",
+    },
   },
   contact: {
     title: "联系我们",

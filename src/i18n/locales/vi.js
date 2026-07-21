@@ -116,11 +116,14 @@ export default {
     phone: 'Số điện thoại',
     email: 'Email',
     note: 'Ghi chú (dị ứng, mức lực massage, yêu cầu riêng…)',
+    noteShort: 'Ghi chú',
     notePlaceholder: 'Ví dụ: xin kỹ thuật viên nữ, lực vừa, có mang thai 5 tháng…',
     summary: 'Thông tin đặt lịch',
     service: 'Dịch vụ',
     dateTime: 'Thời gian',
     total: 'Tạm tính',
+    discountApplied: 'Đã giảm {{percent}}%',
+    noDiscountNote: 'Ưu đãi đặt lịch trực tuyến không áp dụng cho dịch vụ này.',
     confirm: 'Xác nhận đặt lịch',
     errName: 'Vui lòng nhập họ tên',
     errPhone: 'Vui lòng nhập số điện thoại hợp lệ',
@@ -131,6 +134,36 @@ export default {
     doneSub: 'Lễ tân sẽ gọi lại theo số điện thoại bạn để lại để xác nhận lịch hẹn.',
     newBooking: 'Đặt thêm lịch khác',
     noteChannel: 'Lễ tân sẽ liên hệ với bạn để xác nhận trước khi lịch hẹn có hiệu lực.',
+
+    // Chương trình ưu đãi hiển thị trên trang đặt lịch
+    promo: {
+      badge: 'Ưu đãi',
+      title: 'Đặt lịch trực tuyến — nhận ngay ưu đãi đến 20%',
+      lead: 'Tận hưởng những liệu trình thư giãn cao cấp với mức giá ưu đãi, chỉ dành cho khách đặt lịch trước qua website chính thức của Da Nang My Khe Spa.',
+      discount: 'Giảm ngay 20% trên hầu hết các dịch vụ trong menu.',
+      exceptLabel: 'Không áp dụng cho',
+      except1: 'Dịch vụ dành cho trẻ em',
+      except2: 'Các gói 30 phút',
+
+      whyTitle: 'Vì sao nên đặt lịch trước?',
+      why1: 'Giảm ngay 20% khi đặt qua website.',
+      why2: 'Chủ động chọn thời gian và liệu trình mong muốn.',
+      why3: 'Hạn chế thời gian chờ, được ưu tiên sắp xếp lịch phù hợp.',
+      why4: 'Nhận thêm 10% cho lần quay lại khi hoàn thành đánh giá.',
+
+      returnTitle: 'Ưu đãi dành cho khách quay lại',
+      returnLead:
+        'Chúng tôi luôn trân trọng những khách hàng đã tin tưởng và đồng hành cùng Da Nang My Khe Spa.',
+      returnHow: 'Chia sẻ trải nghiệm của bạn trên Google hoặc Tripadvisor với:',
+      returnReq1: 'Tối thiểu 50 ký tự',
+      returnReq2: 'Kèm 03 hình ảnh',
+      returnResult:
+        'Sau khi lễ tân xác nhận bài đánh giá hợp lệ, bạn được giảm thêm 10% cho lần sử dụng dịch vụ tiếp theo.',
+
+      ctaTitle: 'Đặt lịch ngay hôm nay',
+      ctaSub:
+        'Tận hưởng không gian thư giãn chuẩn Hàn Quốc cùng những ưu đãi chỉ có tại Da Nang My Khe Spa.',
+    },
   },
   contact: {
     title: 'Liên hệ',
