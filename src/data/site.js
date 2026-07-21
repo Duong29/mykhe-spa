@@ -29,11 +29,6 @@ export const site = {
     kakao: "https://pf.kakao.com/_xkXISj/chat",
     instagram: "https://www.instagram.com/danang_mykhe_spa",
   },
-
-  // Kênh nhận đơn đặt lịch của lễ tân (chưa có phần mềm quản lý riêng)
-  booking: {
-    telegramBot: "https://t.me/danangmykhespa",
-  },
 };
 
 export const LANGUAGES = [

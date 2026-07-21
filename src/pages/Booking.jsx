@@ -10,7 +10,6 @@ import {
   IconCheck,
   IconArrow,
   IconClock,
-  IconChat,
 } from '../components/Icons'
 
 const STEPS = ['step1', 'step2', 'step3', 'step4']
@@ -134,19 +133,6 @@ export default function Booking() {
             <pre className="mt-8 overflow-x-auto rounded-2xl bg-white p-6 text-left font-sans text-sm leading-relaxed whitespace-pre-wrap text-ink-700 ring-1 ring-ink-900/8">
               {message}
             </pre>
-
-            <div className="mt-7 flex justify-center">
-              <a
-                href={site.booking.telegramBot}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="btn bg-[#229ED9] px-8 text-white hover:brightness-110"
-              >
-                <IconChat size={19} /> {t('booking.sendTelegram')}
-              </a>
-            </div>
-
-            <p className="mt-6 text-xs text-ink-300">{t('booking.noteChannel')}</p>
 
             <button
               type="button"

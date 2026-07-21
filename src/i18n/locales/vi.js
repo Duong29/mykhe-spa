@@ -128,11 +128,9 @@ export default {
     errDate: 'Vui lòng chọn ngày',
     errTime: 'Vui lòng chọn khung giờ',
     doneTitle: 'Đã ghi nhận yêu cầu của bạn!',
-    doneSub:
-      'Lễ tân sẽ liên hệ xác nhận trong vòng 15 phút. Bạn có thể gửi thẳng thông tin qua kênh dưới đây để được xử lý nhanh hơn.',
-    sendTelegram: 'Gửi qua Telegram',
+    doneSub: 'Lễ tân sẽ gọi lại theo số điện thoại bạn để lại để xác nhận lịch hẹn.',
     newBooking: 'Đặt thêm lịch khác',
-    noteChannel: 'Yêu cầu đặt lịch được chuyển tới bộ phận lễ tân qua Telegram.',
+    noteChannel: 'Lễ tân sẽ liên hệ với bạn để xác nhận trước khi lịch hẹn có hiệu lực.',
   },
   contact: {
     title: 'Liên hệ',

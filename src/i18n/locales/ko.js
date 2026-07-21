@@ -127,11 +127,9 @@
     errDate: '날짜를 선택해 주세요',
     errTime: '시간대를 선택해 주세요',
     doneTitle: '예약 요청이 접수되었습니다!',
-    doneSub:
-      '리셉션에서 15분 이내에 확인 연락을 드립니다. 아래 채널로 바로 보내주시면 더 빠르게 처리해 드립니다.',
-    sendTelegram: 'Telegram으로 보내기',
+    doneSub: '남겨주신 연락처로 리셉션에서 예약 확인 전화를 드립니다.',
     newBooking: '다른 예약 추가하기',
-    noteChannel: '예약 요청은 Telegram을 통해 리셉션으로 전달됩니다.',
+    noteChannel: '예약은 리셉션 확인 연락 후에 최종 확정됩니다.',
   },
   contact: {
     title: '문의하기',

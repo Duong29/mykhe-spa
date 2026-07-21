@@ -127,11 +127,9 @@
     errDate: 'Please choose a date',
     errTime: 'Please choose a time slot',
     doneTitle: "We've received your request!",
-    doneSub:
-      'Our reception team will contact you to confirm within 15 minutes. For an even faster response, send your details straight through one of the channels below.',
-    sendTelegram: 'Send via Telegram',
+    doneSub: 'Our reception team will call the number you provided to confirm your appointment.',
     newBooking: 'Make another booking',
-    noteChannel: 'Booking requests are forwarded to our reception team via Telegram.',
+    noteChannel: 'Our reception team will contact you to confirm before the booking is final.',
   },
   contact: {
     title: 'Contact',

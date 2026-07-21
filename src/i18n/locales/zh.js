@@ -125,11 +125,9 @@
     errDate: "请选择日期",
     errTime: "请选择时段",
     doneTitle: "已收到您的预约申请！",
-    doneSub:
-      "前台将在 15 分钟内与您联系确认。您也可以通过以下渠道直接发送信息，我们会优先为您处理。",
-    sendTelegram: "通过 Telegram 发送",
+    doneSub: "前台将拨打您留下的电话号码，与您确认预约。",
     newBooking: "再预约一单",
-    noteChannel: "您的预约申请将通过 Telegram 转交至前台。",
+    noteChannel: "预约需经前台电话确认后方才生效。",
   },
   contact: {
     title: "联系我们",
