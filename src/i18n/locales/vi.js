@@ -33,8 +33,8 @@ export default {
     heroCtaBook: 'Đặt lịch ngay',
     heroCtaService: 'Xem bảng dịch vụ',
     statYears: 'Năm kinh nghiệm',
-    statGuests: 'Khách mỗi tháng',
-    statRooms: 'Phòng trị liệu',
+    statRooms: 'Phòng massage',
+    statShampooRooms: 'Phòng gội đầu',
     statRating: 'Đánh giá Google',
 
     aboutEyebrow: 'Về chúng tôi',
@@ -50,11 +50,13 @@ export default {
     feature3Title: 'Phòng riêng khép kín',
     feature3Desc: 'Phòng đôi, phòng nhóm, có nhà tắm riêng và đồ thay sạch sẽ.',
     feature4Title: 'Phục vụ đa ngôn ngữ',
-    feature4Desc: 'Tiếng Việt, Anh, Hàn, Nga, Trung — bạn cứ thoải mái trao đổi.',
+    feature4Desc:
+      'Nhân viên giao tiếp được tiếng Anh, tiếng Hàn, tiếng Trung — bạn cứ thoải mái trao đổi.',
 
     servicesEyebrow: 'Dịch vụ nổi bật',
     servicesTitle: 'Chọn liệu trình phù hợp với bạn',
-    servicesSub: 'Giá công khai, không phụ phí. Tip hoàn toàn tuỳ tâm.',
+    servicesSub:
+      'Giá niêm yết công khai, không phụ phí. Mức tip cho kỹ thuật viên được ghi rõ ngay trên bảng giá để bạn tiện chuẩn bị.',
 
     spaceEyebrow: 'Không gian',
     spaceTitle: 'Ấm áp ngay từ khi bước vào cửa',
@@ -69,7 +71,7 @@ export default {
       'Gội đầu dưỡng sinh + lấy ráy tai là combo đáng tiền nhất chuyến đi Đà Nẵng. Rất chuyên nghiệp.',
     review2Name: 'Minh Anh',
     review3:
-      'Booked online in 2 minutes, they confirmed on Zalo right away. Best foot spa in Da Nang.',
+      'Booked online in 2 minutes, they confirmed right away. Best foot spa in Da Nang.',
     review3Name: 'Daniel R.',
 
     ctaTitle: 'Sẵn sàng thả lỏng?',
@@ -84,8 +86,9 @@ export default {
     catSingle: 'Dịch vụ gội đầu & lấy ráy tai',
     duration: 'Thời lượng',
     price: 'Giá',
-    tipTitle: 'Gợi ý tip',
-    tipNote: 'Tip là hoàn toàn tự nguyện — bảng dưới đây chỉ để bạn tiện tham khảo.',
+    tipTitle: 'Hướng dẫn tiền tip',
+    tipNote:
+      'Mức tip được niêm yết công khai, minh bạch. Ngoài giá dịch vụ và tip, bạn không phải trả thêm bất kỳ khoản nào.',
     bookThis: 'Đặt liệu trình này',
     notAvailable: 'Không phục vụ mốc này',
   },
@@ -127,12 +130,9 @@ export default {
     doneTitle: 'Đã ghi nhận yêu cầu của bạn!',
     doneSub:
       'Lễ tân sẽ liên hệ xác nhận trong vòng 15 phút. Bạn có thể gửi thẳng thông tin qua kênh dưới đây để được xử lý nhanh hơn.',
-    sendZalo: 'Gửi qua Zalo',
     sendTelegram: 'Gửi qua Telegram',
-    sendEmail: 'Gửi qua Email',
     newBooking: 'Đặt thêm lịch khác',
-    noteChannel:
-      'Yêu cầu đặt lịch được chuyển tới bộ phận lễ tân qua Email / Zalo / Telegram.',
+    noteChannel: 'Yêu cầu đặt lịch được chuyển tới bộ phận lễ tân qua Telegram.',
   },
   contact: {
     title: 'Liên hệ',

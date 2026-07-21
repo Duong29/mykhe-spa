@@ -21,12 +21,12 @@ import {
 
 const featureIcons = [IconHands, IconLeaf, IconDoor, IconGlobe]
 
-// Số liệu giới thiệu — cập nhật lại theo con số thật của spa
+// Số liệu thật của spa. Điểm Google lấy từ site.js để chỉ phải sửa một nơi.
 const stats = [
-  { value: '8+', key: 'statYears' },
-  { value: '3.000+', key: 'statGuests' },
+  { value: '3+', key: 'statYears' },
   { value: '12', key: 'statRooms' },
-  { value: '4.9★', key: 'statRating' },
+  { value: '2', key: 'statShampooRooms' },
+  { value: `${site.google.rating}★`, key: 'statRating' },
 ]
 
 const spaceShots = [

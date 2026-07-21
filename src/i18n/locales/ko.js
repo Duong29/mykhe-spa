@@ -33,8 +33,8 @@
     heroCtaBook: '지금 예약하기',
     heroCtaService: '서비스 가격표 보기',
     statYears: '년 경력',
-    statGuests: '월 방문 고객',
-    statRooms: '관리실',
+    statRooms: '마사지 룸',
+    statShampooRooms: '샴푸 룸',
     statRating: 'Google 평점',
 
     aboutEyebrow: '스파 소개',
@@ -50,11 +50,12 @@
     feature3Title: '독립된 프라이빗 룸',
     feature3Desc: '커플룸과 단체룸을 갖추었고, 전용 샤워실과 깨끗한 가운을 제공합니다.',
     feature4Title: '다국어 응대',
-    feature4Desc: '베트남어, 영어, 한국어, 러시아어, 중국어로 편하게 말씀해 주세요.',
+    feature4Desc: '직원이 영어, 한국어, 중국어로 응대해 드리니 편하게 말씀해 주세요.',
 
     servicesEyebrow: '인기 서비스',
     servicesTitle: '나에게 꼭 맞는 프로그램을 선택하세요',
-    servicesSub: '가격은 모두 공개되어 있으며 추가 요금은 없습니다. 팁은 전적으로 마음에 따라 주시면 됩니다.',
+    servicesSub:
+      '가격은 모두 공개되어 있으며 추가 요금이 없습니다. 테라피스트 팁도 요금표에 함께 안내되어 있어 미리 준비하실 수 있습니다.',
 
     spaceEyebrow: '공간',
     spaceTitle: '문을 여는 순간부터 느껴지는 따뜻함',
@@ -69,7 +70,7 @@
       '감태 머리 감기 + 귀청소는 이번 다낭 여행에서 가장 잘한 선택이었어요. 정말 전문적입니다.',
     review2Name: '민 아인',
     review3:
-      '온라인으로 2분 만에 예약했는데 Zalo로 바로 확인 연락이 왔어요. 다낭 최고의 풋스파입니다.',
+      '온라인으로 2분 만에 예약했는데 바로 확인 연락이 왔어요. 다낭 최고의 풋스파입니다.',
     review3Name: 'Daniel R.',
 
     ctaTitle: '이제 편안해질 준비가 되셨나요?',
@@ -85,7 +86,8 @@
     duration: '소요 시간',
     price: '가격',
     tipTitle: '팁 안내',
-    tipNote: '팁은 전적으로 자율입니다 — 아래 표는 참고용으로만 확인해 주세요.',
+    tipNote:
+      '팁 금액은 공개적으로 투명하게 안내해 드립니다. 시술 요금과 팁 외에 추가로 지불하실 비용은 없습니다.',
     bookThis: '이 프로그램 예약하기',
     notAvailable: '해당 시간은 제공하지 않습니다',
   },
@@ -127,12 +129,9 @@
     doneTitle: '예약 요청이 접수되었습니다!',
     doneSub:
       '리셉션에서 15분 이내에 확인 연락을 드립니다. 아래 채널로 바로 보내주시면 더 빠르게 처리해 드립니다.',
-    sendZalo: 'Zalo로 보내기',
     sendTelegram: 'Telegram으로 보내기',
-    sendEmail: '이메일로 보내기',
     newBooking: '다른 예약 추가하기',
-    noteChannel:
-      '예약 요청은 이메일 / Zalo / Telegram을 통해 리셉션으로 전달됩니다.',
+    noteChannel: '예약 요청은 Telegram을 통해 리셉션으로 전달됩니다.',
   },
   contact: {
     title: '문의하기',

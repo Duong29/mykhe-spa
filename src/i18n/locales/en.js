@@ -33,8 +33,8 @@
     heroCtaBook: 'Book now',
     heroCtaService: 'See our menu',
     statYears: 'Years of experience',
-    statGuests: 'Guests per month',
-    statRooms: 'Treatment rooms',
+    statRooms: 'Massage rooms',
+    statShampooRooms: 'Hair wash rooms',
     statRating: 'Google rating',
 
     aboutEyebrow: 'About us',
@@ -50,11 +50,12 @@
     feature3Title: 'Private en-suite rooms',
     feature3Desc: 'Couple and group rooms with private showers and fresh change of clothes.',
     feature4Title: 'Multilingual service',
-    feature4Desc: 'Vietnamese, English, Korean, Russian and Chinese — just tell us what you need.',
+    feature4Desc: 'Our staff speak English, Korean and Chinese — just tell us what you need.',
 
     servicesEyebrow: 'Featured services',
     servicesTitle: 'Find the treatment that fits you',
-    servicesSub: 'Transparent pricing, no hidden fees. Tipping is entirely up to you.',
+    servicesSub:
+      "Transparent pricing, no hidden fees. Your therapist's tip is listed right on the price table, so you know exactly what to prepare.",
 
     spaceEyebrow: 'Our space',
     spaceTitle: 'Warmth from the moment you walk in',
@@ -69,7 +70,7 @@
       'The wellness hair wash plus ear cleaning was the best value of my whole trip to Da Nang. Truly professional.',
     review2Name: 'Minh Anh',
     review3:
-      'Booked online in 2 minutes, they confirmed on Zalo right away. Best foot spa in Da Nang.',
+      'Booked online in 2 minutes, they confirmed right away. Best foot spa in Da Nang.',
     review3Name: 'Daniel R.',
 
     ctaTitle: 'Ready to unwind?',
@@ -84,8 +85,9 @@
     catSingle: 'Shampoo & ear cleaning',
     duration: 'Duration',
     price: 'Price',
-    tipTitle: 'Tipping guide',
-    tipNote: 'Tipping is entirely voluntary — the table below is just for reference.',
+    tipTitle: 'Tip guide',
+    tipNote:
+      'Tip amounts are published openly and transparently. Beyond the treatment price and the tip, there is nothing else to pay.',
     bookThis: 'Book this treatment',
     notAvailable: 'Not available for this duration',
   },
@@ -127,12 +129,9 @@
     doneTitle: "We've received your request!",
     doneSub:
       'Our reception team will contact you to confirm within 15 minutes. For an even faster response, send your details straight through one of the channels below.',
-    sendZalo: 'Send via Zalo',
     sendTelegram: 'Send via Telegram',
-    sendEmail: 'Send via Email',
     newBooking: 'Make another booking',
-    noteChannel:
-      'Booking requests are forwarded to our reception team via Email / Zalo / Telegram.',
+    noteChannel: 'Booking requests are forwarded to our reception team via Telegram.',
   },
   contact: {
     title: 'Contact',

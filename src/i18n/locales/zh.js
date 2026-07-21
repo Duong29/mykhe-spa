@@ -33,8 +33,8 @@
     heroCtaBook: "立即预约",
     heroCtaService: "查看服务价目",
     statYears: "年专业经验",
-    statGuests: "位客人每月光临",
-    statRooms: "间理疗包厢",
+    statRooms: "间按摩房",
+    statShampooRooms: "间洗发房",
     statRating: "Google 评分",
 
     aboutEyebrow: "关于我们",
@@ -50,11 +50,11 @@
     feature3Title: "独立私密包厢",
     feature3Desc: "双人房、多人房，配备独立卫浴与干净换洗衣物。",
     feature4Title: "多语言服务",
-    feature4Desc: "越南语、英语、韩语、俄语、中文 —— 沟通毫无障碍。",
+    feature4Desc: "员工可用英语、韩语、中文与您沟通，有需要尽管开口。",
 
     servicesEyebrow: "热门服务",
     servicesTitle: "挑选最适合您的疗程",
-    servicesSub: "价格公开透明，绝无附加费用。小费完全随心。",
+    servicesSub: "价格公开透明，绝无附加费用。技师小费也已清楚标注在价目表上，方便您提前准备。",
 
     spaceEyebrow: "空间环境",
     spaceTitle: "推门而入，暖意扑面",
@@ -69,7 +69,7 @@
       "洗头养生加采耳，是这趟岘港之行最值的一笔消费。非常专业。",
     review2Name: "Minh Anh",
     review3:
-      "网上两分钟就订好了，他们马上通过 Zalo 确认。岘港最棒的足疗。",
+      "网上两分钟就订好了，他们马上就确认了。岘港最棒的足疗。",
     review3Name: "Daniel R.",
 
     ctaTitle: "准备好放松了吗？",
@@ -84,8 +84,8 @@
     catSingle: "洗发·采耳单项",
     duration: "时长",
     price: "价格",
-    tipTitle: "小费参考",
-    tipNote: "小费完全出于自愿 —— 下表仅供您参考。",
+    tipTitle: "小费指南",
+    tipNote: "小费金额公开透明。除服务费用与小费之外，您无需支付任何其他费用。",
     bookThis: "预约此疗程",
     notAvailable: "该时长暂不提供",
   },
@@ -127,12 +127,9 @@
     doneTitle: "已收到您的预约申请！",
     doneSub:
       "前台将在 15 分钟内与您联系确认。您也可以通过以下渠道直接发送信息，我们会优先为您处理。",
-    sendZalo: "通过 Zalo 发送",
     sendTelegram: "通过 Telegram 发送",
-    sendEmail: "通过邮件发送",
     newBooking: "再预约一单",
-    noteChannel:
-      "您的预约申请将通过邮件 / Zalo / Telegram 转交至前台。",
+    noteChannel: "您的预约申请将通过 Telegram 转交至前台。",
   },
   contact: {
     title: "联系我们",

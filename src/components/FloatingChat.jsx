@@ -1,19 +1,24 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { site } from '../data/site'
-import { IconZalo, IconMessenger, IconKakao, IconPhone, IconChat, IconClose } from './Icons'
+import { IconKakao, IconInstagram, IconPhone, IconChat, IconClose } from './Icons'
 
 // Chỉ mở app chat tương ứng khi bấm — không nhúng livechat.
 const channels = [
-  { key: 'zalo', href: site.social.zalo, Icon: IconZalo, label: 'Zalo', color: 'bg-[#0068ff]' },
   {
-    key: 'messenger',
-    href: site.social.messenger,
-    Icon: IconMessenger,
-    label: 'Messenger',
-    color: 'bg-[#0084ff]',
+    key: 'kakao',
+    href: site.social.kakao,
+    Icon: IconKakao,
+    label: 'KakaoTalk',
+    color: 'bg-[#fae100] !text-[#3c1e1e]',
   },
-  { key: 'kakao', href: site.social.kakao, Icon: IconKakao, label: 'KakaoTalk', color: 'bg-[#fae100] !text-[#3c1e1e]' },
+  {
+    key: 'instagram',
+    href: site.social.instagram,
+    Icon: IconInstagram,
+    label: 'Instagram',
+    color: 'bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]',
+  },
   { key: 'phone', href: site.phoneHref, Icon: IconPhone, label: site.phone, color: 'bg-clay-500' },
 ]
 

@@ -109,44 +109,19 @@ export const IconChat = (p) => (
 )
 
 // --- Logo mạng xã hội (glyph đơn sắc, dùng currentColor) ---
-export const IconZalo = ({ size = 22, ...p }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} {...p}>
-    <path
-      fill="currentColor"
-      d="M12 2.6c-5.4 0-9.8 3.7-9.8 8.3 0 2.6 1.4 4.9 3.6 6.4-.1.8-.5 2-1.4 3 .1.2.3.3.5.2 1.6-.4 2.9-1.2 3.7-1.8 1 .3 2.2.4 3.4.4 5.4 0 9.8-3.7 9.8-8.2S17.4 2.6 12 2.6z"
-    />
-    <path
-      d="M8.4 7.9h5.2L8.4 14h5.4"
-      fill="none"
-      stroke="#fff"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-export const IconMessenger = ({ size = 22, ...p }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" {...p}>
-    <path d="M12 2C6.3 2 2 6.2 2 11.8c0 3.2 1.4 6 3.7 7.8v3.8l3.4-1.9c.9.3 1.9.4 2.9.4 5.7 0 10-4.2 10-9.8S17.7 2 12 2zm1 12.6-2.6-2.7-5 2.7 5.5-5.8 2.6 2.7 4.9-2.7-5.4 5.8z" />
-  </svg>
-)
+/**
+ * KakaoTalk: bong bóng chat có 3 chấm khoét rỗng bằng fill-rule evenodd.
+ * Khoét lỗ thay vì tô màu để icon đọc được trên mọi nền — nền vàng của nút
+ * chat nổi, nền trắng trang Liên hệ hay nền đen ở footer đều hiện đúng.
+ */
 export const IconKakao = ({ size = 22, ...p }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} {...p}>
     <path
       fill="currentColor"
-      d="M12 3C6.9 3 2.8 6.3 2.8 10.3c0 2.6 1.7 4.9 4.3 6.2-.2.7-.7 2.5-.8 2.9-.1.5.2.5.4.4.2-.1 2.7-1.8 3.8-2.5.5.1 1 .1 1.5.1 5.1 0 9.2-3.3 9.2-7.3S17.1 3 12 3z"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M12 3C6.9 3 2.8 6.3 2.8 10.3c0 2.6 1.7 4.9 4.3 6.2-.2.7-.7 2.5-.8 2.9-.1.5.2.5.4.4.2-.1 2.7-1.8 3.8-2.5.5.1 1 .1 1.5.1 5.1 0 9.2-3.3 9.2-7.3S17.1 3 12 3zM8.4 11.4a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3zm3.6 0a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3zm3.6 0a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3z"
     />
-    <text
-      x="12"
-      y="13.6"
-      textAnchor="middle"
-      fontSize="7.5"
-      fontWeight="700"
-      fill="#3c1e1e"
-      fontFamily="system-ui, sans-serif"
-    >
-      K
-    </text>
   </svg>
 )
 export const IconInstagram = ({ size = 22, ...p }) => (

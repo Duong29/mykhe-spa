@@ -86,8 +86,20 @@ async function run() {
       .toFile(path.join(IMG_DIR, 'favicon.png'))
   }
 
+  // Gộp vào manifest cũ thay vì ghi đè: cho phép xử lý lại đúng một ảnh
+  // mà không xoá mất kích thước của những ảnh đã sinh từ trước.
+  let previous = {}
+  try {
+    previous = JSON.parse(await fs.readFile(MANIFEST, 'utf8'))
+  } catch {
+    /* chưa có manifest thì thôi */
+  }
+  const merged = Object.fromEntries(
+    Object.entries({ ...previous, ...manifest }).sort(([a], [b]) => a.localeCompare(b)),
+  )
+
   await fs.mkdir(path.dirname(MANIFEST), { recursive: true })
-  await fs.writeFile(MANIFEST, JSON.stringify(manifest, null, 2) + '\n')
+  await fs.writeFile(MANIFEST, JSON.stringify(merged, null, 2) + '\n')
 
   console.log('\n' + '-'.repeat(70))
   console.log(`Ảnh gốc   : ${(before / 1024 / 1024).toFixed(1)} MB (${files.length} file)`)

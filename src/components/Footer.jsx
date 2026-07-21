@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { site } from '../data/site'
-import { IconPin, IconPhone, IconMail, IconClock, IconZalo, IconMessenger, IconKakao, IconInstagram } from './Icons'
+import { IconPin, IconPhone, IconMail, IconClock, IconKakao, IconInstagram } from './Icons'
 import Img from './Img'
 
 const links = [
@@ -14,8 +14,6 @@ const links = [
 ]
 
 const socials = [
-  { href: site.social.zalo, Icon: IconZalo, label: 'Zalo' },
-  { href: site.social.messenger, Icon: IconMessenger, label: 'Messenger' },
   { href: site.social.kakao, Icon: IconKakao, label: 'KakaoTalk' },
   { href: site.social.instagram, Icon: IconInstagram, label: 'Instagram' },
 ]

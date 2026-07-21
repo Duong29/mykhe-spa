@@ -12,15 +12,11 @@ import {
   IconClock,
   IconCheck,
   IconArrow,
-  IconZalo,
-  IconMessenger,
   IconKakao,
   IconInstagram,
 } from '../components/Icons'
 
 const socials = [
-  { href: site.social.zalo, Icon: IconZalo, label: 'Zalo' },
-  { href: site.social.messenger, Icon: IconMessenger, label: 'Messenger' },
   { href: site.social.kakao, Icon: IconKakao, label: 'KakaoTalk' },
   { href: site.social.instagram, Icon: IconInstagram, label: 'Instagram' },
 ]

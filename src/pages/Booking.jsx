@@ -10,8 +10,6 @@ import {
   IconCheck,
   IconArrow,
   IconClock,
-  IconZalo,
-  IconMail,
   IconChat,
 } from '../components/Icons'
 
@@ -87,7 +85,7 @@ export default function Booking() {
   const next = () => validate(step) && setStep((s) => Math.min(s + 1, 3))
   const back = () => setStep((s) => Math.max(s - 1, 0))
 
-  // Nội dung gửi về lễ tân (Zalo / Telegram / Email)
+  // Nội dung gửi về lễ tân (Telegram / Email)
   const message = useMemo(() => {
     if (!service) return ''
     return [
@@ -107,7 +105,7 @@ export default function Booking() {
   }, [service, form, total, t, i18n.language])
 
   const submit = () => {
-    // Chưa có phần mềm quản lý riêng → lưu tạm ở máy khách và chuyển tiếp qua kênh chat/email.
+    // Chưa có phần mềm quản lý riêng → lưu tạm ở máy khách và chuyển tiếp qua Telegram.
     try {
       const all = JSON.parse(localStorage.getItem('mykhe-bookings') || '[]')
       all.push({ ...form, total, createdAt: new Date().toISOString() })
@@ -117,10 +115,6 @@ export default function Booking() {
     }
     setDone(true)
   }
-
-  const mailHref = `mailto:${site.booking.receptionEmail}?subject=${encodeURIComponent(
-    `Đặt lịch — ${form.name}`,
-  )}&body=${encodeURIComponent(message)}`
 
   /* ------------------------- MÀN HÌNH HOÀN TẤT ------------------------- */
   if (done) {
@@ -141,25 +135,14 @@ export default function Booking() {
               {message}
             </pre>
 
-            <div className="mt-7 grid gap-3 sm:grid-cols-3">
-              <a
-                href={`${site.social.zalo}`}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="btn bg-[#0068ff] text-white hover:brightness-110"
-              >
-                <IconZalo size={19} /> {t('booking.sendZalo')}
-              </a>
+            <div className="mt-7 flex justify-center">
               <a
                 href={site.booking.telegramBot}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="btn bg-[#229ED9] text-white hover:brightness-110"
+                className="btn bg-[#229ED9] px-8 text-white hover:brightness-110"
               >
                 <IconChat size={19} /> {t('booking.sendTelegram')}
-              </a>
-              <a href={mailHref} className="btn-outline">
-                <IconMail size={19} /> {t('booking.sendEmail')}
               </a>
             </div>
 
